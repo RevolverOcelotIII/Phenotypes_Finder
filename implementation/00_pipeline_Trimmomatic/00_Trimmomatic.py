@@ -1,14 +1,14 @@
 import sys
-sys.path.append('/home/TCC/implementation')
+sys.path.append('/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation')
 
 import subprocess
 import os
-import Gene as Gene
+# import Gene as Gene
 
 import time
 
 def Trimmomatic():
-    fastq_gz_folder = "/home/TCC/dataset/FASTQ/"
+    fastq_gz_folder = "/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/dataset/FASTQ/"
 
     print("Running Trimmomatic pipeline...\n")
 
@@ -21,7 +21,7 @@ def Trimmomatic():
         r2_file = get_r2_file(fastq_gz_folder, file_name)
         r2_file.join(".fastq.gz")
 
-        output_folder = f"/home/TCC/result/Trimmomatic/{file_name_parts[0]}_{file_name_parts[1]}_{file_name_parts[2]}/"
+        output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name_parts[0]}_{file_name_parts[1]}_{file_name_parts[2]}/"
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
 
@@ -33,14 +33,15 @@ def Trimmomatic():
 
 def get_ref_seq(file_name):
     # Get RefSeq
-    if Gene.Gene.RHD.value in file_name:
-        return f"/home/TCC/implementation/RefSeq/RefSeq_{Gene.Gene.RHD.value}.fasta"
-    elif Gene.Gene.RHCE.value in file_name:
-        return f"/home/TCC/implementation/RefSeq/RefSeq_{Gene.Gene.RHCE.value}.fasta"
+    if 'RHD' in file_name:
+        return f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHD.fasta"
+    elif 'RHCE' in file_name:
+        return f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHCE.fasta"
 
 def get_r2_file(fastq_gz_folder, file_name):
     prefix = file_name.split("_")
     r2_file = [f for f in os.listdir(fastq_gz_folder) if (f.find(prefix[0]) != -1 and "R2" in f.upper())]
+    print(r2_file)
     return r2_file[0]
 
 def step_01(fastq_gz_folder, r1_file, r2_file, output_folder):
@@ -60,7 +61,7 @@ def step_01(fastq_gz_folder, r1_file, r2_file, output_folder):
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
-    adapters = "/home/TCC/implementation/00_pipeline_Trimmomatic/Adapters/adapters.fasta"
+    adapters = "/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/00_pipeline_Trimmomatic/Adapters/adapters.fasta"
 
     command = f"trimmomatic PE -threads 8 \
         {fastq_gz_folder}{r1_file} \
@@ -86,7 +87,7 @@ def step_02(file_name, output_folder, r1_file, r2_file):
     if not os.path.exists(f"{output_folder}assembly/tmp/"):
         os.makedirs(f"{output_folder}assembly/tmp/")
 
-    command = f"/home/TCC/SPAdes-3.15.5/spades.py \
+    command = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/SPAdes-3.15.5/bin/spades.py \
         -1 {output_folder}{r1_stripped}_trimmed.fastq.gz \
         -2 {output_folder}{r2_stripped}_trimmed.fastq.gz \
         -t 8 --only-assembler -k 21,33,55,77 -o {output_folder}assembly"

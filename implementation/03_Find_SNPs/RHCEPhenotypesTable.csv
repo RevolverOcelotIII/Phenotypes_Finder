@@ -1,0 +1,540 @@
+"Phenotype","Allele name","Nucleotide change","Exon Intron","Predicted amino acid change","(Reference No.) PMID","Accession number","rs number"
+"RH:4 or c RH:5 or e RH:6 or f (ce)","RHCE*01 or RHCE*ce","c.307C c.676G","2 5","p.Pro103 p.Ala226","PMID: 8220426","NG_009208.3","rs676785"
+"RH:5 (e+ weak)","RHCE*01.01 RHCE*ce.01","c.48G>C","1","p.Trp16Cys","PMID: 11380456","DQ266400","rs586178"
+"RH:4 (c+ weak, partial) RH:5 (e+ weak, partial)","RHCE*01.02.01 RHCE*ce.02.01 RHCE*ceTI","c.48G>C c.1025C>T","1 7","p.Trp16Cys p.Thr342Ile","PMID: 22804620","KY369953","rs586178 rs1053374"
+"","RHCE*01.02.02 RHCE*ce.02.02","c.48G>C
+c.150C>T
+c.178C>A
+c.201A>G
+c.203A>G
+c.307C>T
+c.1025C>T","1 2 7","p.p.Val50=
+p.Leu60Ile
+p.Ser67=
+p.Asn68Ser
+p.Pro103Ser
+p.Thr342Ilep","PMID: 25857637","LN680105","rs586178
+rs200955066
+rs181860403
+rs1053343
+rs1053344
+rs676785
+rs1053374"
+"RH:5 (e+ partial)","RHCE*01.03 RHCE*ce.03","c.1025C>T","7","p.Thr342Ile","PMID: 20088832","MH717897","rs1053374"
+"RH:4 (c+ partial)
+RH:5 (e+ weak, partial) RH:10,–20 (V+ weak, VS–)
+RH:–18,–19 (Hr–, hrS–)","RHCE*01.04.01 RHCE*ce.04.01
+RHCE*ceAR","c.48G>C c.712A>G c.733C>G c.787A>G c.800T>A c.916A>G","1
+5
+6","p.Trp16Cys p.Met238Val p.Leu245Val p.Arg263Gly p.Met267Lys p.Ile306Val","PMID: 10590079","not found","rs586178 rs144163296 rs1053361 rs1132763 rs1132764 rs1132765"
+"Inferred as RHCE*01.04.01 RHCE*ceAR","RHCE*01.04.02 RHCE*ce.04.02","c.48G>C c.697C>G c.712A>G c.733C>G c.787A>G c.800T>A
+c.916A>G","1
+5
+6","p.Trp16Cys p.Gln233Glu p.Met238Val p.Leu245Val p.Arg263Gly p.Met267Lys
+p.Ile306Val","(1), Abstract","KY369958","rs586178 rs142246017 rs144163296 rs1053361 rs1132763 rs1132764
+rs1132765"
+"Inferred as RHCE*01.04.01 RHCE*ceAR","RHCE*01.04.03 RHCE*ce.04.03","c.48G>C
+c.455C>A
+c.712A>G
+c.733C>G
+c.787A>G
+c.800T>A
+c.916A>G","1
+3
+5
+
+
+
+6","p.Trp16Cys
+p.Thr152Asn
+p.Met238Val
+p.Leu245Val
+p.Arg263Gly
+p.Met267Lys
+p.Ile306Val","(1), Abstract","KY369957","rs586178
+rs35109888
+rs144163296
+rs1053361
+rs1132763
+rs1132764
+rs1132765"
+"Inferred as RHCE*01.04.01 RHCE*ceAR","RHCE*01.04.04 RHCE*ce.04.04","c.712A>G c.733C>G c.787A>G c.800T>A
+c.916A>G","5
+6","p.Met238Val p.Leu245Val p.Arg263Gly p.Met267Lys
+p.Ile306Val","(22), Abstract","not found","rs144163296 rs1053361 rs1132763 rs1132764
+rs1132765"
+"RH:4 (c+ partial)
+RH:5 (e+ weak, partial) 
+RH:–18,–19 (Hr–, hrS–)","RHCE*01.05.01
+RHCE*ce.05.01
+RHCE*ceEK","c.48G>C
+c.712A>G
+c.787A>G c.800T>A","1
+5
+","p.Trp16Cys
+p.Met238Val
+p.Arg263Gly p.Met267Lys","PMID: 12393640","AF510065
+KU556685
+","rs586178
+rs144163296
+rs1132763 rs1132764"
+"RH:4 (c+ partial) RH:5 (e+ partial)
+RH:–18,–19 (Hr–, hrS–)","RHCE*01.05.02 RHCE*ce.05.02","c.712A>G c.787A>G c.800T>A","5","p.Met238Val p.Arg263Gly p.Met267Lys","PMID: 32196693","not found","rs144163296 rs1132763 rs1132764"
+"RH:5 (e+ weak, partial) RH:–59 (CEAG–)
+RH:–31 (hrB–)","RHCE*01.06.01 RHCE*ce.06.01
+RHCE*ceAG","c.254C>G","2","p.Ala85Gly","PMID: 26173592","GU810838","rs57992529"
+"","RHCE*01.06.02
+RHCE*ce.06.02","c.254C>G
+c.733C>G","2
+5","p.Ala85Gly
+p.Leu245Val","PMID: 25695437","not found","rs57992529
+rs1053361"
+"","RHCE*01.06.03
+RHCE*ce.06.03","c.254C>G
+c.733C>G
+c.941T>C","2
+5
+7","p.Ala85Gly
+p.Leu245Val
+p.Val314Ala","PMID: 26173592","KY243887","rs57992529
+rs1053361
+rs79321360"
+"","RHCE*01.06.04
+RHCE*ce.06.04","c.254C>G
+c.697C>G","2
+5","p.Ala85Gly
+p.Gln233Glu","PMID: 26173592","KY243888","rs57992529
+rs142246017"
+"RH:2 (C+ partial, robust C+ expression)
+RH:5 (e+)","RHCE*01.06.05 RHCE*ce.06.05","c.254C>G c.307C>T","2","p.Ala85Gly p.Pro103Ser","PMID: 26173592","KY369954","rs57992529 rs676785"
+"RH:4 (c+ partial)
+RH:5 (e+ weak, partial) RH:–19 (hrS–)
+RH:–31 (hrB–)
+RH:–61 (CEVF–)","RHCE*01.07.01 RHCE*ce.07.01 RHCE*ceMO.01","c.48G>C c.667G>T","1
+5","p.Trp16Cys p.Val223Phe","PMID: 11380457
+PMID: 23772606","not found","rs586178 rs147357308"
+"RH:4 (c+ partial)
+RH:5 (e+ weak, partial) RH:–19 (hrS–)
+RH:–31 (hrB–)
+RH:–61 (CEVF–)","RHCE*01.07.02 RHCE*ce.07.02 RHCE*ceMO.02","c.667G>T","5","p.Val223Phe","PMID: 23772606","not found","rs147357308"
+"RH:5 (e+ partial, weak to neg) RH:–18,–19 (Hr–, hrS–) RH:49 (STEM+)","RHCE*01.08 RHCE*ce.08 RHCE*ceBI","c.48G>C c.712A>G c.818C>T c.1132C>G","1
+5
+6
+8","p.Trp16Cys p.Met238Val p.Ala273Val p.Leu378Val","PMID: 12393640","AF510066","rs586178 rs144163296 rs147094099 rs138917454"
+"RH:5 (e+ positive to negative) RH:–18 (Hr–), inferred
+RH:–19 (hrS–)
+Rh:49 (STEM+ weak)","RHCE*01.09 RHCE*ce.09 RHCE*ceSM","c.48G>C c.712A>G c.818C>T","1
+5
+6","p.Trp16Cys p.Met238Val p.Ala273Val","PMID: 22738288","GU474431","rs586178 rs144163296 rs147094099"
+"RH:5 (e+ weak)
+Some monoclonal anti-D cross- react","RHCE*01.10.01 .01
+RHCE*ce.10.01 .01
+RHCE*ceSL .01.01","c.48G>C c.365C>T","1
+3","p.Trp16Cys p.Ser122Leu","PMID: 16686844","not found","rs586178 rs201407774"
+"RH:5 (e+ weak)
+Some monoclonal anti-D cross- react","RHCE*01.10.01.02
+RHCE*ce.10.01.02 RHCE*ceSL.01.02","c.48G>C c.105C>T c.365C>T","1
+2
+3","p.Trp16Cys p.Asp35= p.Ser122Leu","PMID: 16686844","not found","rs586178 rs142971926 rs201407774"
+"RH:5 (e+ weak)
+Some monoclonal anti-D cross- react","RHCE*01.10.02 RHCE*ce.10.02
+RHCE*ceSL.02","c.365C>T","3","p.Ser122Leu","PMID: 16686844","AM072960","rs201407774"
+"RH:5 (e+ weak)
+Some monoclonal anti-D cross- react","RHCE*01.11 RHCE*ce.11
+RHCE*ceRT","c.461G>C","3","p.Arg154Thr","PMID: 12919427","AM072961","rs747471048"
+"RH:5 (e+ weak)","RHCE*01.12
+RHCE*ce.12 RHCE*ceRA","c.48G>C c.538G>C","1
+4","p.Trp16Cys p.Gly180Arg","PMID: 16836572","not found","rs586178
+not found"
+"RH:5 (e+ very weak) RH:58 (CELO+ weak)","RHCE*01.13 RHCE*ce.13
+RHCE*ceBP","c.687_689delAAG","5","p.Arg229del","PMID: 14996197","not found","rs1437180947"
+"RH:4 (c+ weak) RH:5 (e+ weak)
+RH:36 (Bea+)","RHCE*01.14
+RHCE*ce.14 RHCE*ceBE","c.662C>G","5","p.Pro221Arg","PMID: 19453979
+PMID: 19951310","AM295500","rs141398055"
+"RH:4 (c+ weak) RH:5 (e+ weak) RH:55 (LOCR+) RH:–26","RHCE*01.15 RHCE*ce.15 RHCE*ceLOCR","c.286G>A","2","p.Gly96Ser","PMID: 9426634
+PMID: 17002624","not found","rs144348222"
+"RH:5 (e+ weak)","RHCE*01.16 RHCE*ce.16","c.48G>C c.1170C>T c.1193T>A","1
+9","p.Trp16Cys p.Leu390= p.Val398Glu","PMID: 27113036","KU234778","rs586178 rs630931 rs630612"
+"Some monoclonal anti-D crossreact","RHCE*01.17 RHCE*ce.17","c.505C>A c.509G>T c.514T>A","4","p.Leu169Met p.Arg170Met p.Phe172Ile","(27), Abstract","MW924818","rs1020280601 rs987753117 rs1053349"
+"RH:5 (e+ weak)","RHCE*01.18 RHCE*ce.18","c.939G>A","6","p.Pro313=","PMID: 30919985","not found","rs754703211"
+"RH:4 (c+ partial) RH:5 (e+ partial) RH:10,20 (V+VS+)
+RH:31 (hrB+ very weak to neg)","RHCE*01.20.01 RHCE*ce.20.01 RHCE*ceVS.01","c.733C>G","5","p.Leu245Val","PMID: 8759908
+PMID: 9256293
+PMID: 9024488","not found","rs1053361"
+"RH:4 (c+ partial) RH:5 (e+ partial) RH:10,20 (V+VS+)
+RH:–31 (hrB–)","RHCE*01.20.02 .01
+RHCE*ce.20.02 .01
+RHCE*ceVS.02 .01","c.48G>C c.733C>G","1
+5","p.Trp16Cys p.Leu245Val","PMID: 9024488","not found","rs586178 rs1053361"
+"Inferred as
+RHCE*01.20.02.01","RHCE*01.20.02.02 RHCE*ce.20.02.02 RHCE*ceVS.02.02","c.48G>C c.105C>T c.733C>G","1
+2
+5","p.Trp16Cys p.Asp35= p.Leu245Val","PMID: 31002175","not found","rs586178 rs186534432 rs1053361"
+"RH:4 (c+ partial) RH:5 (e+ partial) RH:–10,20 (V–VS+)
+RH:–31 (hrB–)","RHCE*01.20.03 RHCE*ce.20.03 RHCE*ceVS.03
+RHCE*ceS","c.48G>C c.733C>G c.1006G>T","1
+5
+7","p.Trp16Cys p.Leu245Val p.Gly336Cys","PMID: 9767746","not found","rs586178 rs1053361 rs116261244"
+"RH:5 (e+ partial) RH:10,20 (V+VS+)
+Probable RH:–31 (hrB–)","RHCE*01.20.04.01 RHCE*ce.20.04.01 RHCE*ceVS.04.01
+RHCE*ceTI type 2","c.48G>C c.733C>G c.1025C>T","1
+5
+7","p.Trp16Cys p.Leu245Val p.Thr342Ile","PMID: 20088832","KY652757","rs586178 rs1053361 rs1053374"
+"Inferred as
+RHCE*01.20.04.01
+RHCE*ceTI type 2","RHCE*01.20.04.02 RHCE*ce.20.04.02 RHCE*ceVS.04.02","c.48G>C c.105C>T c.733C>G c.744T>C c.1025C>T","1
+5
+7","p.Trp16Cys p.Asp35= p.Leu245Val p.Ser248= p.Thr342Ile","","not found","rs586178 rs142971926 rs1053361 rs149352457 rs1053374"
+"RH:5 (e+ partial) RH:–10,20 (V–VS+)
+RH:–31 (hrB–)","RHCE*01.20.05 RHCE*ce.20.05 RHCE*ceVS.05","c.733C>G c.1006G>T","5
+7","p.Leu245Val p.Gly336Cys","PMID: 9767746","not found","rs1053361 rs116261244"
+"RH:4 (c+ partial)
+RH:5 (e+ partial, positive to negative)
+RH:20 (VS+)
+RH:–19,–31 (hrS–, hrB–)
+RH:43 (Crawford+) RH:–58 (CELO–)
+Some monoclonal anti-D cross-
+react","RHCE*01.20.06 RHCE*ce.20.06 RHCE*ceVS.06
+RHCE*ceCF","c.48G>C c.697C>G c.733C>G","1
+5","p.Trp16Cys p.Gln233Glu p.Leu245Val","PMID: 16934069
+PMID: 20609196","DQ178642","rs586178 rs142246017 rs1053361"
+"Some monoclonal anti-D cross- react","RHCE*01.20.06.02 RHCE*ce.20.06.02
+RHCE*ceVS.06.02","c.697C>G c.733C>G","5","p.Gln233Glu p.Leu245Val","(27), Abstract","MW924817","rs142246017 rs1053361"
+"RH:4 (c+ partial, weak to neg) RH:5 (e+ partial, weak to neg) RH:10 (V+ weak to neg)
+RH:19 (hrS+ weak to neg) RH:20 (VS+ weak to neg)
+RH:31 (hrB+ weak to neg) RH:48 (JAL+)
+RH:–57 (CEST–)","RHCE*01.20.07 RHCE*ce.20.07 RHCE*ceVS.07 RHCE*ceJAL","c.340C>T c.733C>G","3
+5","p.Arg114Trp p.Leu245Val","PMID: 12393640
+PMID: 19207167
+PMID: 19170983","AF510067","rs148487630 rs1053361"
+"RH:5 (e+ weak) RH:10,20 (V+VS+)
+Probable RH:–31 (hrB–)","RHCE*01.20.08 RHCE*ce.20.08
+RHCE*ceVS.08","c.48G>C c.733C>G c.748G>A","1
+5","p.Trp16Cys p.Leu245Val p.Val250Met","PMID: 12393640","AF510068","rs586178 rs1053361
+not found"
+"RH:5 (e+ weak) RH:10,20 (V+VS+)
+RH:31 (hrB+ weak)","RHCE*01.20.09 RHCE*ce.20.09 RHCE*ceVS.09","c.48G>C c.733C>G c.941T>C","1
+5
+7","p.Trp16Cys p.Leu245Val p.Val314Ala","PMID: 20576012
+allele reported with c.1006G>T
+(possible error)","KX279465","rs586178 rs1053361 rs79321360"
+"Probable RH:4 (c+ partial) Probable RH:5 (e+ partial)","RHCE*01.20.10 RHCE*ce.20.10 RHCE*ceVS.10","c.48G>C c.712A>G c.733C>G","1
+5","p.Trp16Cys p.Met238Val p.Leu245Val","(1), Abstract","KY369955","rs586178 rs144163296 rs1053361"
+"","RHCE*01.20.11 RHCE*ce.20.11 RHCE*ceVS.11","c.48G>C
+exons 2-3 D c.186G>T c.410C>T c.455A>C c.733C>G c.1006G>T","1
+2
+3
+5
+7","p.Trp16Cys p.Leu62Phe p.ALa137Val p.Asn152Thr p.Leu245Val p.Gly336Cys","(2), Abstract","KY926711","rs586178 rs199509194 rs113982491 rs17418085 rs1053361 rs116261244"
+"Some monoclonal anti-D cross- react","RHCE*01.20.12 RHCE*ce.20.12 RHCE*ceVS.12","c.48G>C c.462G>T c.733C>G c.1006G>T","1
+3
+5
+7","p.Trp16Cys p.Arg154Ser p.Leu245Val p.Gly336Cys","(3), Abstract","MW349827","rs586178
+not found rs1053361 rs116261244"
+"RH:5 (e+)
+RH:9 (CX+) RH:20 (VS+)","RHCE*01.20.13 RHCE*ce.20.13
+RHCE*ceVS.13","c.48G>C c.106G>A c.733C>G","1
+5","p.Trp16Cys p.Ala36Thr p.Leu245Val","PMID: 22288371","not found","rs586178 rs145034271 rs1053361"
+"RH:5 (e+ weak) RH:48 (JAL+)","RHCE*01.21.01 RHCE*ce.21.01","c.341G>A","3","p.Arg114Gln","PMID: 19207167","AJ548432","rs1238030431"
+"RH:5 (e+ weak) RH:48 (JAL+)","RHCE*01.21.02 RHCE*ce.21.02","c.48G>C c.187G>C c.341G>A","1
+2
+3","p.Trp16Cys p.Gly63Arg p.Arg114Gln","PMID: 19453979","AM295498","rs586178
+not found rs1238030431"
+"RH:5 (e+ weak) RH:33 (DHAR+) RH:50 (FPPT+)
+Some monoclonal anti-D cross- react","RHCE*01.22.01 RHCE*ce.22.01 RHCE*ceHAR.01","c.667G>T c.697C>G c.712A>G c.733C>G c.744T>C c.787A>G
+c.800T>A","5","p.Val223Phe p.Gln233Glu p.Met238Val p.Leu245Val p.Ser248= p.Arg263Gly
+p.Met267Lys","PMID: 8616049","not found","rs147357308 rs142246017 rs144163296 rs1053361 rs149352457 rs1132763
+rs1132764"
+"Inferred as RHCE*01.22.01 RHCE*ceHAR.01","RHCE*01.22.02 RHCE*ce.22.02 RHCE*ceHAR.02","c.48G>C c.667G>T c.697C>G c.712A>G c.733C>G c.744T>C c.787A>G c.800T>A","1
+5","p.Trp16Cys p.Val223Phe p.Gln233Glu p.Met238Val p.Leu245Val p.Ser248= p.Arg263Gly p.Met267Lys","(22), Abstract","not found","rs586178 rs147357308 rs142246017 rs144163296 rs1053361 rs149352457 rs1132763 rs1132764"
+"RH:5 (e+ weak)","RHCE*01.23 RHCE*ce.23","c.649T>C","5","p.Trp217Arg","PMID: 19453980","FJ486162","not found"
+"RH:5 (e+ weak)","RHCE*01.24 RHCE*ce.24","c.512A>G","4","p.His171Arg","PMID: 19453979","AM182448","rs781037009"
+"RH:5 (e+ weak)","RHCE*01.25 RHCE*ce.25","c.730G>A","5","p.Ala244Thr","PMID: 19453979","AM260938","rs1307519228"
+"RH:5 (e+ weak)","RHCE*01.26 RHCE*ce.26","c.872C>T","6","p.Pro291Leu","PMID: 19453979","AM183927","rs374399829"
+"RH:5 (e+ weak)","RHCE*01.27 RHCE*ce.27","c.1154G>C","9","p.Gly385Ala","PMID: 19453979","AM295499","rs1412021250"
+"RH:4 (c+ weak)","RHCE*01.28 RHCE*ce.28","c.1254A>C","10","p.Ter418Tyr","PMID: 19453979","AM295503","not found"
+"RH:4,–5 (c+e–)","RHCE*01.29 RHCE*ce.29
+RHCE*ceBOL","RHD exons 4-9","4-9","","PMID: 7994050","not found","NA"
+"RH:5 (e+ weak)","RHCE*01.30 RHCE*ce.30","c.526G>A","4","p.Ala176Thr","PMID: 21166680","not found","rs753965768"
+"RH:5 (e+ weak)","RHCE*01.31 RHCE*ce.31","c.695T>C","5","p.Ile232Thr","PMID: 21166680","not found","not found"
+"","RHCE*01.32 RHCE*ce.32","c.827C>A","6","p.Ala276Glu","PMID: 21166680","not found","not found"
+"RH:5 (e+ partial, weak to neg) RH:–31 (hrB–)","RHCE*01.33 RHCE*ce.33","c.506T>C","4","p.Leu169Pro","(1), Abstract","KX714949","not found"
+"RH:4 (c+ partial) RH:–5 (e–)","RHCE*01.34 RHCE*ce.34","RHD exons 4-7","4-7","","(4), Abstract","KY652756","NA"
+"","RHCE*01.35 RHCE*ce.35","c.202A>G","2","p.Asn68Asp","PMID: 26435076","KP136911","rs772058645"
+"RH:2 (robust C+ expression)
+RH:–4 (c–)","RHCE*01.36 RHCE*ce.36","c.307C>T","2","p.Pro103Ser","PMID: 26435076","KP136912","rs676785"
+"","RHCE*01.37 RHCE*ce.37","c.697C>G c.712A>G c.733C>G c.744T>C","5","p.Gln233Glu p.Met238Val p.Leu245Val p.Ser248=","PMID: 26435076","KP136915","rs142246017 rs144163296 rs1053361 rs149352457"
+"RH:5 (e+ weak)","RHCE*01.38 RHCE*ce.38","c.1-10C>T","5’UTR","promoter region","PMID: 19453979","FM866412","rs369957834"
+"RH:2 (C+ weak) RH:–4 (c–)","RHCE*01.39 RHCE*ce.39","c.308C>T","2","p.Pro103Leu","PMID: 27338008","KU319432","rs747882675"
+"RH:4 (c+ weak)","RHCE*01.40 RHCE*ce.40","c.340C>T","3","p.Arg114Trp","(5), Abstract","KR060081","rs148487630"
+"RH:–8 (CW–)
+RH:9 (CX+ weak) Rh:–51 (MAR–)
+RH:–62 (PARG–)","RHCE*01.41 RHCE*ce.41 RHCE*ceWA","c.114A>C","2","p.Leu38Phe","(6), Abstract","not found","not found"
+"Some monoclonal anti-D crossreact","RHCE*01.42
+RHCE*ce.42 RHCE*ceRG","c.508A>G","4","p.Arg170Gly","(7), Abstract","KX236061","not found"
+"RH:3 (E+ weak to neg)","RHCE*01.43 RHCE*ce.43","c.499A>G","4","p.Met167Val","PMID: 33399221
+PMID: 30418133","not found","rs779408591"
+"RH:4 (c+ partial, weak)
+RH:5 (e+ partial, weak)","RHCE*01.44
+RHCE*ce.44","RHD exons 5-6","5 and
+6","","(8), Abstract","MW349828","NA"
+"Null phenotypes","","","","","","",""
+"RH:–4,–5,–17 (c–e–)","RHCE*01N.01 RHCE*ceN.01","c.80_84delTCTTC","1","p.Tyr29Phefs*5","PMID: 10827273","not found","not found"
+"RH:–4,–5,–17 (c–e–)","RHCE*01N.02 RHCE*ceN.02","c.963delG","7","p.Iso322Phefs*37","PMID: 16271106","not found","not found"
+"RH:–4,–5,–17 (c–e–)","RHCE*01N.03 RHCE*ceN.03","c.634+1G>T","i4","Splice site","PMID: 9657766","not found","not found"
+"RH:–4,–5,–17 (c–e–), inferred (ce in trans)","RHCE*01N.04 RHCE*ceN.04","c.676delG","5","p.Ala226Leufs*3","PMID: 30284287","KY652755","not found"
+"RH:–5 (e–)
+(cE in trans)","RHCE*01N.05 RHCE*ceN.05","c.335+3A>T","i2","Splice site","PMID: 30284287","KX714951","not found"
+"RH:–4,–5,–17 (c–e–)","RHCE*01N.06 RHCE*ceN.06","c.679_683delCTGCT","5","p.Leu227Glufs*89","PMID: 23252593","not found","not found"
+"RH:–4 (c–)
+(ce or Ce in trans)","RHCE*01N.07 RHCE*ceN.07","c.1074-2A>G","i7","Splice site","PMID: 23252593","not found","not found"
+"RH:–4,–5,–17 (c–e–)","RHCE*01N.08 RHCE*ceN.08","c.801+1G>A","5","Splice site","PMID: 28470789","KY229720","not found"
+"RH:–4,–5,–17 (c–e–)","RHCE*01N.09 RHCE*ceN.09","c.1044_1050dupGCTT CAT","7","p.Thr351Alafs*52","PMID: 25413218","not found","not found"
+"RH:–4,–5 (c–e–)","RHCE*01N.10 RHCE*ceN.10","c.807T>A","6","p.Tyr269Ter","(9), Abstract","not found","rs780267740"
+"RH:–4 (c–)
+(Ce in trans)","RHCE*01N.11 RHCE*ceN.11","c.1154-1G>A","i8","Splice site","(10), Abstract","MT374825","not found"
+"RH:-4 (c–)
+(Ce in trans)","RHCE*01N.12","c.48G>C
+c.366delG","1
+3","p.Trp16Cys p.Val123Cysfs*1","PMID: 34046910","MW773845","not found"
+"RH:–4 (c–)
+(Ce in trans)","RHCE*01N.13 RHCE*ceN.13","c.486+1G>A","i3","Splice site","provisional (partially
+sequenced Exons","not found","not found"
+"RH:2 or C
+RH:5 or e RH:7 or Ce","RHCE*02 or RHCE*Ce","Reference nucleotides c.48G>C
+c.150C>T c.178C>A c.201A>G c.203A>G c.307C>T
+c.676G","1
+2
+5","p.Trp16Cys p.Val50= p.Leu60Ile p.Ser67= p.Asn68Ser p.Pro103Ser p.Ala226","PMID: 8220426","BC075081","rs586178 rs200955066 rs181860403 rs1053343 rs1053344 rs676785 rs609320"
+"RH:2 (C+ weak to neg) RH:5 (e+ weak)
+RH:48 (JAL+)","RHCE*02.01 RHCE*Ce.01 RHCE*CeMA RHCE*CeJAL","c.340C>T","3","p.Arg114Trp","PMID: 12084172","AJ548431 AM183925","rs148487630"
+"RH:2 (C+)
+RH:5 (e+)","RHCE*02.02 RHCE*Ce.02
+RHCE*CeFV","c.667G>T c.697C>G c.712A>G","5","p.Val223Phe p.Gln233Glu p.Met238Val","PMID: 19453980","AJ867777","rs147357308 rs142246017 rs144163296"
+"RH:2 (C+ weak to neg) RH:5 (e+ weak)
+RH:53 (JAHK+)","RHCE*02.03 RHCE*Ce.03
+RHCE*CeJAHK","c.365C>T","3","p.Ser122Leu","PMID: 16078918","AM999773
+(called CeSI in GenBank)","rs201407774"
+"RH:2 (C+ partial, weak to neg)","RHCE*02.04 RHCE*Ce.04 RHCE*CeVA","c.667G>T c.697C>G c.712A>G c.733C>G c.744T>C c.787A>G c.800T>A","5","p.Val223Phe p.Gln233Glu p.Mer238Val p.Leu245Val p.Ser248= p.Arg263Gly p.Met267Lys","PMID: 12084172","not found","rs147357308 rs142246017 rs144163296 rs1053361 rs149352457 rs1132763 rs1132764"
+"RH:2 (C+ weak) RH:5 (e+ weak)","RHCE*02.04.01 RHCE*Ce.04.01","c.667G>T c.697C>G c.712A>G c.733C>G c.744T>C c.787A>G","5","p.Val223Phe p.Gln233Glu p.Mer238Val p.Leu245Val p.Ser248= p.Arg263Gly","PMID: 19453979","AM999774","rs147357308 rs142246017 rs144163296 rs1053361 rs149352457 rs1132763"
+"RH:60 (PARG+)","RHCE*02.05 RHCE*Ce.05
+RHCE*CePARG","c.501G>A","4","p.Met167Ile","PMID: 28144953","not found","not found"
+"RH:2 (C+ partial) RH:5 (e+ partial) RH:8 (CW+)
+RH:–51 (MAR–)","RHCE*02.08.01 RHCE*Ce.08.01 RHCE*CeCW","c.122A>G","1","p.Gln41Arg","PMID: 7620172
+(25), Abstract","not found","rs138268848"
+"RH:8 (CW+) RH:–56 (CENR–)","RHCE*02.08.02
+RHCE*Ce.08.02 RHCE*CeNR","c.122A>G
+RHD exon 6-10","1
+6-10","p.Gln41Arg","PMID: 15225246","not found","rs138268848"
+"RH:2 (C+ partial) RH:9 (CX+)
+RH:–51 (MAR–)","RHCE*02.09 RHCE*Ce.09
+RHCE*CeCX","c.106G>A","1","p.Ala36Thr","PMID: 7620172","not found","rs145034271"
+"RH:1 (D+) in the absence of conventional D
+RH:2 (C+ partial, weak to neg) RH:5 (e+ partial, weak)
+RH:32
+RH:54 (DAK+) RH:–46 (Sec–)","RHCE*02.10.01 RHCE*Ce.10.01 RHCE*CeRN","c.505C>A c.509G>T c.514T>A c.544A>T c.577A>G c.594T>A
+c.602G>C","4","p.Leu169Met p.Arg170Met p.Phe172Ile p.Thr182Ser p.Lys193Glu p.Asn198Lys
+p.Arg201Thr","PMID: 8639859
+(21), Abstract","not found","rs1132761 rs1132762 rs1053349 rs1053350 rs1384157219 rs1053354
+rs141398055"
+"RH:2 (C+ partial, weak to neg) RH:5 (e+ partial, weak)
+RH:32
+RH:54 (DAK+) RH:–46 (Sec–)","RHCE*02.10.02 RHCE*Ce.10.02
+(allele existence?)","c.455C>A c.505C>A c.509G>T c.514T>A c.544A>T c.577A>G c.594T>A c.602G>C","3
+4","p.Thr152Asn p.Leu169Met p.Arg170Met p.Phe172Ile p.Thr182Ser p.Lys193Glu p.Asn198Lys p.Arg201Thr","PMID: 8639859","not found","rs35109888 rs1132761 rs1132762 rs1053349 rs1053350 rs1384157219 rs1053354 rs141398055"
+"RH:2 (C+ weak) RH:5 (e+)
+RH:55 (LOCR+)","RHCE*02.11 RHCE*Ce.11","c.286G>A","2","p.Gly96Ser","PMID: 19453979
+(23), Abstract","AM295502","rs144348222"
+"RH:2 (C+ weak)","RHCE*02.12 RHCE*Ce.12","c.344T>G","3","p.Leu115Arg","PMID: 19453979","AJ867774","not found"
+"RH:5 (e+ weak)","RHCE*02.13 RHCE*Ce.13","c.364T>C","3","p.Ser122Pro","PMID: 19453980","FJ486157","not found"
+"RH:2 (C+ weak)","RHCE*02.14
+RHCE*Ce.14","c.497A>T","4","p.His166Leu","PMID: 19453980","FJ486159","not found"
+"RH:5 (e+ weak)","RHCE*02.15
+RHCE*Ce.15","c.689G>C","5","p.Ser230Thr","PMID: 19453979","AM182449","not found"
+"RH:2 (C+ weak) RH:5 (e+ weak)","RHCE*02.16 RHCE*Ce.16","c.728A>G","5","p.Tyr243Cys","PMID: 19453979","FM165579","rs555090649"
+"RH:5 (e+ weak)","RHCE*02.17 RHCE*Ce.17","c.800T>A","5","p.Met267Lys","PMID: 19453980","FJ486164","rs1132764"
+"RH:2 (C+ weak) RH:5 (e+ weak)","RHCE*02.18 RHCE*Ce.18","c.890T>C","6","p.Leu297Pro","PMID: 19453979","AM295501","rs763017817"
+"RH:5 (e+ weak)","RHCE*02.19 RHCE*Ce.19","c.464T>G c.1118C>T","3
+8","p.Met155Arg p.Ala373Val","PMID: 19453979","AM295506","not found not found"
+"RH:2 (C+ weak) RH:5 (e+ weak)","RHCE*02.20 RHCE*Ce.20","c.79_81delCTC","1","p.Leu27del","PMID: 19453979","AM410878","not found"
+"RH:2 (C+ weak)","RHCE*02.21 RHCE*Ce.21","c.527C>T","4","p.Ala176Val","PMID: 21166680","KM975479","not found"
+"RH:2 (C+ weak)
+RH:5 (e+ partial, weak)","RHCE*02.22 RHCE*Ce.22","c.667G>T","5","p.Val223Phe","PMID: 21166680","not found","rs147357308"
+"RH:2 (C+ weak)","RHCE*02.23 RHCE*Ce.23","c.941T>C","7","p.Val314Ala","PMID: 21166680","not found","rs79321360"
+"RH:2 (C+ weak) RH:5 (e+ weak)","RHCE*02.24 RHCE*Ce.24","c.1007G>A","7","p.Gly336Asp","PMID: 21166680","not found","rs760319839"
+"RH:2 (C+ weak)","RHCE*02.25 RHCE*Ce.25","c.1007G>T","7","p.Gly336Val","PMID: 21166680","not found","rs760319839"
+"RH:2 (C+ weak) RH:5 (e+ weak)","RHCE*02.26 RHCE*Ce.26","c.460A>G","3","p.Arg154Gly","PMID: 27282785","KU744002","rs755299894"
+"RH:2 (C+ weak) RH:5 (e+ weak)","RHCE*02.27 RHCE*Ce.27","c.375C>G","3","p.Ile125Met","(1), Abstract
+(5), Abstract","KM078027","rs143715642"
+"RH:2,5 (C+e+)
+RH:9 (CX+)","RHCE*02.28 RHCE*Ce.28","c.919G>A","6","p.Gly307Arg","(1), Abstract","KY190222","rs200950594"
+"RH:2 (C+)
+RH:3 (E+ pos to neg) RH:5 (e+)","RHCE*02.29 RHCE*Ce.29","c.674C>G","5","p.Ser225Cys","(11), Abstract","KY190223","rs200087488"
+"RH:2,5 (C+ e+) RH:10,20 (V+VS+)","RHCE*02.30 RHCE*Ce.30","c.733C>G","5","p.Leu245Val","PMID: 26435076","KP136918","rs1053361"
+"RH:2 (C+ weak) RH:5 (e+ weak)","RHCE*02.31 RHCE*Ce.31","c.487-5T>G","i3","Splice site","PMID: 19453979","FM866415","rs776819527"
+"RH:2 (C+ weak)","RHCE*02.32 RHCE*Ce.32","c.1228-2A>G","i9","Splice site","PMID: 19453979","FM866417","not found"
+"RH:2 (C+ weak)","RHCE*02.33 RHCE*Ce.33","c.98A>C","1","p.His33Pro","(5), Abstract","not found","not found"
+"RH:2 (C+ weak) RH:5 (e+ weak)","RHCE*02.34 RHCE*Ce.34","c.473G>A","3","p.Ser158Asn","(5), Abstract","not found","rs758173067"
+"RH:2 (C+ weak)","RHCE*02.35 RHCE*Ce.35","c.491A>G","4","p.Asp164Gly","(5), Abstract","not found","rs548044758"
+"RH:2 (C+ weak)","RHCE*02.36 RHCE*Ce.36","c.494A>C","4","p.Tyr165Ser","(5), Abstract","not found","rs746303049"
+"RH:2 (C+)","RHCE*02.37
+RHCE*Ce.37","Lacking the 109bp
+insert","i2","","(12), Abstract","not found",""
+"RH:2 (C+ weak) RH:5 (e+ weak)","RHCE*02.38 RHCE*Ce.38","c.939G>A","6","p.Pro313=","PMID: 30919985","not found","rs754703211"
+"RH:2 (C+ very weak)","RHCE*02.39 RHCE*Ce.39","c.1154G>T","9","p.Gly385Val","(28), Abstract","MW427217","rs1412021250"
+"RH:2 (C+ weak, mixed field) RH:–10 (V–)","RHCE*02.40 RHCE*Ce.40 RHCE*CeAR","c.712A>G c.733C>G c.787A>G c.800T>A c.916A>G","5
+6","p.Met238Val p.Leu245Val p.Arg263Gly p.Met267Lys p.Ile306Val","(22), Abstract","not found","rs586178 rs144163296 rs1053361 rs1132763 rs1132764
+rs1132765"
+"RH:–2,–5,–17 (C–e–)","RHCE*02N.01 RHCE*CeN.01","c.966_968delinsC","7","p.His323Profs*77","PMID: 9657766
+PMID: 9657769","not found","not found"
+"RH:–2 (C–)
+RH:–5 (e–), inferred RH:–17, inferred","RHCE*02N.02 RHCE*CeN.02","c.659G>A","5","p.Trp220Ter","PMID: 30284287","KX714950","not found"
+"RH:–2 (C–)
+(ce in trans)","RHCE*02N.03 RHCE*CeN.03","c.486+1G>A","i3","Splice site","PMID: 30284287","KP334130","rs753832633"
+"RH:–2,–5 (C–e–)
+RH:–17, inferred","RHCE*02N.04 RHCE*CeN.04","c.93insT","1","p.Thr32Tyrfs*3","PMID: 24020803
+(18), Abstract","not found","not found"
+"RH:–2,–5 (C–e–)
+RH:–17, inferred","RHCE*02N.05
+RHCE*CeN.05","c.377C>G","3","p.Ser126Ter","PMID: 26435076","KP136914","not found"
+"RH:–2,–5,–17 (C–e–)","RHCE*02N.06
+RHCE*CeN.06","c.148+5G>A","i1","Splice site","PMID: 24020803","not found","rs756955857"
+"RH:–2,–5,–17 (C–e–)","RHCE*02N.07
+RHCE*CeN.07","RHD exons 3-8","3-8","","PMID: 22686562
+PMID: 24020803","not found","NA"
+"RH:–2,–5,–17 (C–e–)","RHCE*02N.08
+RHCE*CeN.08","RHD exons 3-9","3-9","","PMID: 24020803","not found","NA"
+"RH:–2,–5,–17 (C–e–)","RHCE*02N.09
+RHCE*CeN.09","c.938delC","6","p.Pro313Argfs*46","(13), Abstract","not found","not found"
+"RH:–2 (C–)
+RH:–5 (e–), inferred RH:–17, inferred","RHCE*02N.10 RHCE*CeN.10","c.482insT","3","p.Asn162Glnfs37Ter","(14), Abstract","MK090017","not found"
+"RH:–2,–5 (C–e–)
+RH:–17, inferred","RHCE*02N.11
+RHCE*CeN.11","c.148G>A","1","p.Val50Ile","PMID: 32608521
+(14), Abstract","MT210599","not found"
+"RH:–2 (C–)
+RH:–5 (e–), inferred RH:–17, inferred","RHCE*02N.12 RHCE*CeN.12","c.1059delG","7","p.Trp353Ter","(8), Abstract","MW355846","not found"
+"RH:–2 (C–)
+RH:–5 (e–), inferred","RHCE*02N.13
+RHCE*CeN.13","c.635-9G>A","i4","Splice site","(28), Abstract","MZ351768","rs767724106"
+"RH:–2,–5,–17 (C–e–)","RHCE*02N.14 RHCE*CeN.14","c.569_572dupCTCT","4","p.Pro192Serfs*8","PMID: 33270227","MK388216","not found"
+"RH:4 or c RH:3 or E
+RH:27 or cE","RHCE*03  or
+RHCE*cE","Reference nucleotides c.307C
+c.676G>C","2
+5","p.Pro103 p.Ala226Pro","PMID: 8220426","","rs676785 rs609320"
+"RH:3 (E+ partial, weak to neg) RH:11 (Ew+)","RHCE*03.01
+RHCE*cE.01 RHCE*cEEW","c.500T>A","4","p.Met167Lys","PMID: 9827916
+PMID: 14996199","not found","rs140421430"
+"RH:3 (E+ partial, weak to neg) RH:4 (c+ weak to neg)","RHCE*03.02 RHCE*cE.02
+RHCE*cEKK","RHD exons 1-3","1-3","","PMID: 9827916
+PMID: 11724987","AB049753","NA"
+"RH:3 (E+ partial, weak to neg)","RHCE*03.03 RHCE*cE.03 RHCE*cEFM","c.697C>G c.712A>G","5","p.Gln233Glu p.Met238Val","PMID: 9827916
+PMID: 11724987","AB018644","rs142246017 rs144163296"
+"RH:3 (E+ partial, weak to neg)","RHCE*03.03.02 RHCE*cE.03.02","c.697C>G
+c.712A>G c.733C>G c.744T>C","5","p.Gln233Glu
+p.Met238Val p.Leu245Val p.Ser248=","(1), Abstract","KY369956","rs142246017
+rs144163296 rs1053361 rs149352457"
+"RH:3 (E+ partial, weak to neg)","RHCE*03.03.03 RHCE*cE.03.03","c.697C>G","5","p.Gln233Glu","(12), Abstract","MK934127","rs142246017"
+"RH:3 (E+ partial, weak to neg) RH:4 (c+ weak)","RHCE*03.04 RHCE*cE.04 RHCE*cEIV","c.602G>C","4","p.Arg201Thr","(15), Abstract","FJ486161","rs141398055"
+"RH:3 (E+ partial, weak to neg) RH:4 (c+ weak to neg)","RHCE*03.05 RHCE*cE.05
+RHCE*cEKH","c.461G>C","3","p.Arg154Thr","PMID: 11724987","AB018645","rs747471048"
+"RH:3 (E+ weak)
+RH:4 (c+ weak)","RHCE*03.06
+RHCE*cE.06","c.28C>T","1","p.Arg10Trp","PMID: 19453980","FJ486155","rs749601047"
+"RH:3 (E+ weak)","RHCE*03.07
+RHCE*cE.07","c.344T>C","3","p.Leu115Pro","PMID: 19453979
+PMID: 19453980","FJ486156","not found"
+"RH:3 (E+ weak)","RHCE*03.08
+RHCE*cE.08","c.356G>A","3","p.Ser119Asn","PMID: 19453979","AM295505","rs777819701"
+"RH:3 (E+ weak)
+RH:4 (c+ weak)","RHCE*03.09
+RHCE*cE.09","c.374T>A","3","p.Ile125Asn","PMID: 19453980","FJ486158","not found"
+"RH:3 (E+ weak)","RHCE*03.10
+RHCE*cE.10","c.506T>A","4","p.Leu169Gln","PMID: 19453980","FJ486160","not found"
+"RH:3 (E+ weak)
+RH:4 (c+ weak)","RHCE*03.11
+RHCE*cE.11","c.908T>A","6","p.Leu303Gln","PMID: 19453980","FJ486165","not found"
+"RH:3 (E+ weak)","RHCE*03.12
+RHCE*cE.12","c.464T>G
+c.477T>G","3","p.Met155Arg
+p.Asn159Lys","PMID: 19453979","AM183926","not found
+not found"
+"RH:3 (E+ weak)
+RH:4 (c+ weak)","RHCE*03.13
+RHCE*cE.13","c.728A>G","5","p.Tyr243Cys","PMID: 21166680","not found","rs555090649"
+"RH:3 (E+ very weak to neg) RH:4 (c+ weak)","RHCE*03.14 RHCE*cE.14","c.734T>C","5","p.Leu245Pro","PMID: 22958092","not found","not found"
+"RH:3 (E+ weak)","RHCE*03.15.01
+RHCE*cE.15.01 RHCE*cE BA","c.380C>T c.383G>A","3","p.Ala127Val p.Gly128Asp","PMID: 21166680","not found","rs1053346 rs1053347"
+"RH:3 (E+ weak)","RHCE*03.15.02 RHCE*cE.15.02
+RHCE*cE JU","c.361A>T c.380C>T c.383G>A","3","p.Met121Leu p.Ala127Val p.Gly128Asp","PMID: 21166680","not found","rs1053345 rs1053346 rs1053347"
+"RH:4 (c+ weak)","RHCE*03.16 RHCE*cE.16 RHCE*cE TA","c.94A>G","1","p.Thr32Ala","PMID: 26286238","KP271157","rs760999674"
+"RH:3 (E+ partial)","RHCE*03.17 RHCE*cE.17","c.520G>A","4","p.Val174Met","(1), Abstract","KY190221","rs146306079"
+"RH:3 (E+)
+RH:4 (c+)","RHCE*03.18 RHCE*cE.18","c.48G>C","1","p.Trp16Cys","PMID: 29296782","KY228976","rs586178"
+"RH:3 (E+ weak to neg) RH:4 (c+ weak to neg)","RHCE*03.19 RHCE*cE.19","c.84C>A","1","p.Phe28Leu","PMID: 26435076
+(19), Abstract","KP136913 LN554880","not found"
+"RH:3 (E+ weak to neg) RH:4 (c+ weak)","RHCE*03.20
+RHCE*cE.20","c.149-1G>A","i1","Splice site","PMID: 19453979","FM866414","not found"
+"RH:3 (E+ weak)","RHCE*03.21
+RHCE*cE.21","c.527C>T","4","p.Ala176Val","(5), Abstract","not found","not found"
+"RH:3 (E+ weak)","RHCE*03.22
+RHCE*cE.22","c.208C>T","2","p.Arg70Trp","(5), Abstract","not found","rs1239729684"
+"RH:3 (E+ weak)","RHCE*03.23
+RHCE*cE.23","c.774T>A
+c.916A>G","5","p.Leu258=
+p.Ile306Val","(5), Abstract","not found","not found
+rs1132765"
+"RH:3 (E+ weak)","RHCE*03.24
+RHCE*cE.24","c.1130C>T","8","p.Ala377Val","(5), Abstract","not found","not found"
+"","RHCE*03.25
+see RHCE*03N.07","","","","","",""
+"RH:2 (C+ weak to neg)
+RH:3 (E+)","RHCE*03.26
+RHCE*cE.26","c.48G>C
+c.307C>T","1
+2","p.Trp16Cys
+p.Pro103Ser","(12), Abstract","MG434498","rs586178
+rs676785"
+"Some monoclonal anti-C cross-
+react","RHCE*03.27
+RHCE*cE.27","c.307C>T","2","p.Pro103Ser","(27), Abstract","KX216810","rs676785"
+"RH:3 (E+ weak to neg)","RHCE*03.28
+RHCE*cE.28","c.382G>C","3","p.Gly128Arg","PMID: 33694191","MW462131","not found"
+"RH:3 (E+ very weak) RH:4 (c+ weak to neg)","RHCE*03.29 RHCE*cE.29","c.818C>A","6","p.Ala273Glu","(28), Abstract","MZ351767","not found"
+"RH:3 (E+ very weak)","RHCE*03.30
+RHCE*cE.30","c.336-2A>G","i2","Splice site","(28), Abstract","MZ351769","not found"
+"RH:3 (E+ very weak to neg) RH:4 (c+ weak to neg) RH:17","RHCE*03.31 RHCE*cE.31 RHCE*cEMI
+(formerly
+RHCE*03N.01)","c.350_358delCCATGA GTG","3","p.Arg120_ Ser122del","PMID: 11380457
+(20), Abstract","not found","not found"
+"RH:3 (E+ weak to neg)","RHCE*03.32 RHCE*cE.32","c.361A>T c.380C>T c.383G>A
+c.455C>A","3","p.Met121Leu p.Ala127Val p.Gly128Asp
+p.Thr152Asn","(26), Abstract","not found","rs1053345 rs1053346 rs1053347
+rs35109888"
+"","RHCE*03N.01 RHCE*cEN.01 RHCE*cEMI
+see RHCE*03.31","","","","","",""
+"RH:–3,–4,–17 (E–c–)","RHCE*03N.02
+RHCE*cEN.02","c.907delC","6","p.Leu303Ter","PMID: 21517889","GU563377","rs747976226"
+"RH:–3,–4 (E–c–)
+RH:–17, inferred","RHCE*03N.03 RHCE*cEN.03","c.554G>A","4","p.Trp185Ter","(16), Abstract","not found","rs1395012563"
+"RH:–3,–4,–17 (E–c–)","RHCE*03N.04 RHCE*cEN.04","c.486+5G>A","i3","Splice site","PMID: 23252593","not found","not found"
+"RH:–3,–4,–17 (E–c–)","RHCE*03N.05
+RHCE*cEN.05","c.221G>A","2","p.Trp74Ter","PMID: 24020803","not found","rs1044945369"
+"RH:–3,–4 (E–c–)
+RH:–17, inferred","RHCE*03N.06
+RHCE*cEN.06","c.200C>A","2","p.Ser67Ter","(10), Abstract","MT374824","not found"
+"RH:–3,–4,–17 (E–c–)","RHCE*03N.07 RHCE*cEN.07
+(formerly
+RHCE*03.25)","c.659G>A","5","p.Trp220Ter","(17), Abstract","not found","not found"
+"RH:2 or C RH:3 or E RH:22 or CE","RHCE*CE or RHCE*04","Reference nucleotides c.48G>C
+c.150C>T c.178C>A c.201A>G c.203A>G c.307C>T c.676G>C","1
+2
+5","p.Trp16Cys p.Val50= p.Leu60Ile p.Ser67= p.Asn68Ser p.Pro103Ser p.Ala226Pro","PMID: 8220426","","rs586178 rs200955066 rs181860403 rs1053343 rs1053344 rs676785 rs609320"
+"RH:2 (C+ weak)
+RH:3 (E+ weak to neg)","RHCE*04.01
+RHCE*CE.01","c.722C>T","5","p.Thr241Ile","PMID: 19453980","FJ486163","rs751751505"
+"RH:2 (C+ weak to neg)
+RH:3 (E+ weak to neg)","RHCE*04.02
+RHCE*CE.02","c.380C>A","3","p.Ala127Glu","(14), Abstract","MH807721","rs1053346"
