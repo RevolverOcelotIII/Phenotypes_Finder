@@ -13,15 +13,15 @@ def Trimmomatic():
     print("Running Trimmomatic pipeline...\n")
 
     r1_files = [f for f in os.listdir(fastq_gz_folder) if (f.endswith(".fastq.gz") and "R1" in f.upper())]
+    print(r1_files)
     
     for r1_file in r1_files:
         file_name = r1_file.strip(".fastq.gz")
-        file_name_parts = file_name.split("_")
         ref_seq = get_ref_seq(file_name)
         r2_file = get_r2_file(fastq_gz_folder, file_name)
         r2_file.join(".fastq.gz")
-
-        output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name_parts[0]}_{file_name_parts[1]}_{file_name_parts[2]}/"
+        print(r2_file)
+        output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}/"
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
 
@@ -41,8 +41,9 @@ def get_ref_seq(file_name):
 def get_r2_file(fastq_gz_folder, file_name):
     prefix = file_name.split("_")
     r2_file = [f for f in os.listdir(fastq_gz_folder) if (f.find(prefix[0]) != -1 and "R2" in f.upper())]
+    print('r2 file')
     print(r2_file)
-    return r2_file[0]
+    return r2_file[1]
 
 def step_01(fastq_gz_folder, r1_file, r2_file, output_folder):
     # Execute: TrimmomaticPE 
@@ -58,12 +59,13 @@ def step_01(fastq_gz_folder, r1_file, r2_file, output_folder):
 
     r1_stripped = r1_file.strip(".fastq.gz")
     r2_stripped = r2_file.strip(".fastq.gz")
+    print(r2_stripped)
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
     adapters = "/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/00_pipeline_Trimmomatic/Adapters/adapters.fasta"
-
-    command = f"trimmomatic PE -threads 8 \
+    # SE se single-end, PE se paired-end
+    command = f"trimmomatic PE -phred33 -threads 8 \
         {fastq_gz_folder}{r1_file} \
         {fastq_gz_folder}{r2_file} \
         {output_folder}{r1_stripped}_trimmed.fastq.gz \
@@ -86,11 +88,13 @@ def step_02(file_name, output_folder, r1_file, r2_file):
     r2_stripped = r2_file.strip(".fastq.gz")
     if not os.path.exists(f"{output_folder}assembly/tmp/"):
         os.makedirs(f"{output_folder}assembly/tmp/")
-
+    # remover -2 caso não seja paired-end
+    print(output_folder)
+    print(r1_stripped)
     command = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/SPAdes-3.15.5/bin/spades.py \
         -1 {output_folder}{r1_stripped}_trimmed.fastq.gz \
         -2 {output_folder}{r2_stripped}_trimmed.fastq.gz \
-        -t 8 --only-assembler -k 21,33,55,77 -o {output_folder}assembly"
+        -t 8 -m 4 --only-assembler -k 21,33,55,77 -o {output_folder}assembly"
     print("Step 2: " + command)
     subprocess.call(command, shell=True)
 
