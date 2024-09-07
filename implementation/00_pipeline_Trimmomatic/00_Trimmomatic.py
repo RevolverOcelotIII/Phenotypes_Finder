@@ -12,7 +12,7 @@ def Trimmomatic():
 
     print("Running Trimmomatic pipeline...\n")
 
-    r1_files = [f for f in os.listdir(fastq_gz_folder) if (f.endswith(".fastq.gz") and "R1" in f.upper())]
+    r1_files = [f for f in os.listdir(fastq_gz_folder) if (f.endswith(".fastq.gz") and "_R1" in f.upper())]
     print(r1_files)
     
     for r1_file in r1_files:
@@ -26,8 +26,8 @@ def Trimmomatic():
             os.makedirs(output_folder)
 
         step_01(fastq_gz_folder, r1_file, r2_file, output_folder)
-        step_02(file_name, output_folder, r1_file, r2_file)
-        step_03(ref_seq, output_folder, file_name)
+        step_02_minimap2(file_name, output_folder, r1_file, r2_file, ref_seq)
+        #step_03(ref_seq, output_folder, file_name)
         step_04(file_name, output_folder)
         step_05(ref_seq, output_folder, file_name)
 
@@ -40,10 +40,8 @@ def get_ref_seq(file_name):
 
 def get_r2_file(fastq_gz_folder, file_name):
     prefix = file_name.split("_")
-    r2_file = [f for f in os.listdir(fastq_gz_folder) if (f.find(prefix[0]) != -1 and "R2" in f.upper())]
-    print('r2 file')
-    print(r2_file)
-    return r2_file[1]
+    r2_file = [f for f in os.listdir(fastq_gz_folder) if (f.find(prefix[0]) != -1 and "_R2" in f.upper())]
+    return r2_file[0]
 
 def step_01(fastq_gz_folder, r1_file, r2_file, output_folder):
     # Execute: TrimmomaticPE 
@@ -77,7 +75,7 @@ def step_01(fastq_gz_folder, r1_file, r2_file, output_folder):
     print("Step 1: " + command)
     subprocess.call(command, shell=True)
 
-def step_02(file_name, output_folder, r1_file, r2_file):
+def step_02_spades(file_name, output_folder, r1_file, r2_file):
     # Execute:
     # spades.py 
     # -1 $NAMEFILE"_L001_R1_trimmed_001.fastq.gz" 
@@ -96,6 +94,24 @@ def step_02(file_name, output_folder, r1_file, r2_file):
         -2 {output_folder}{r2_stripped}_trimmed.fastq.gz \
         -t 8 -m 4 --only-assembler -k 21,33,55,77 -o {output_folder}assembly"
     print("Step 2: " + command)
+    subprocess.call(command, shell=True)
+
+def step_02_minimap2(file_name, output_folder, r1_file, r2_file, ref_seq):
+    #Execute:
+    #minimap2 -a -t 2 -x sr sequence_reference.fasta assembly/$FILE_R1_trim.fastq.gz assembly/FILE_R2_trim.fastq.gz
+    # | samtools view -bS -F 4 - | samtools sort -o LACENMT_20240516_1173_S22.sorted.bam
+    r1_stripped = r1_file.strip(".fastq.gz")
+    r2_stripped = r2_file.strip(".fastq.gz")
+
+    if not os.path.exists(f"{output_folder}assembly/tmp/"):
+        os.makedirs(f"{output_folder}assembly/tmp/")
+
+    command = f"minimap2 -a -t 2 -x sr {ref_seq} {output_folder}{r1_stripped}_trimmed.fastq.gz \
+        {output_folder}{r2_stripped}_trimmed.fastq.gz \
+            | samtools view -bS -F 4 - | samtools sort -o {output_folder}{r1_stripped}_sorted.bam"
+
+    print("Step 2: " + command)
+    
     subprocess.call(command, shell=True)
 
 def step_03(ref_seq, output_folder, file_name):
