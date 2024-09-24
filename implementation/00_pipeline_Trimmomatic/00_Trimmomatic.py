@@ -28,14 +28,12 @@ def trimmomatic():
         #if not os.path.exists(output_folder):
         #    os.makedirs(output_folder)
 
-        '''
-        if ref_seq:
+        if len(ref_seq)> 0:
             singleGeneRun(fastq_gz_folder, file_name, r1_file, r2_file, ref_seq)
         else:
             bothGenesRun(fastq_gz_folder, file_name, r1_file, r2_file)
-        '''
 
-        
+        '''
         output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}/"
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
@@ -45,6 +43,7 @@ def trimmomatic():
         #step_03(ref_seq, output_folder, file_name)
         step_04(file_name, output_folder)
         step_05(ref_seq, output_folder, file_name)
+        '''
         
 
 def singleGeneRun(fastq_gz_folder, file_name, r1_file, r2_file, ref_seq):
@@ -56,10 +55,10 @@ def singleGeneRun(fastq_gz_folder, file_name, r1_file, r2_file, ref_seq):
         os.makedirs(output_folder)
 
     step_01(fastq_gz_folder, r1_file, r2_file, trimmed_folder)
-    step_02_minimap2(file_name, output_folder, trimmed_folder, r1_file, r2_file, ref_seq)
+    step_02_minimap2(file_name, output_folder, trimmed_folder, r1_file, r2_file, ref_seq[0])
     #step_03(ref_seq, output_folder, file_name)
     step_04(file_name, output_folder)
-    step_05(ref_seq, output_folder, file_name)
+    step_05(ref_seq[1], output_folder, file_name)
 
 def bothGenesRun(fastq_gz_folder, file_name, r1_file, r2_file):
     #output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}/"
@@ -73,29 +72,33 @@ def bothGenesRun(fastq_gz_folder, file_name, r1_file, r2_file):
     rhd_output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}_RHD/"
     if not os.path.exists(rhd_output_folder):
         os.makedirs(rhd_output_folder)
-    step_02_minimap2(file_name, rhd_output_folder, trimmed_folder, r1_file, r2_file, get_ref_seq('RHD'))
+    step_02_minimap2(file_name, rhd_output_folder, trimmed_folder, r1_file, r2_file, get_ref_seq('RHD')[0])
     #step_03(get_ref_seq('RHD'), rhd_output_folder, file_name)
     step_04(file_name, rhd_output_folder)
-    step_05(get_ref_seq('RHD'), rhd_output_folder, file_name)
+    step_05(get_ref_seq('RHD')[1], rhd_output_folder, file_name)
 
     # FOR RHCE
     rhce_output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}_RHCE/"
     if not os.path.exists(rhce_output_folder):
         os.makedirs(rhce_output_folder)
-    step_02_minimap2(file_name, rhce_output_folder, trimmed_folder, r1_file, r2_file, get_ref_seq('RHCE'))
+    step_02_minimap2(file_name, rhce_output_folder, trimmed_folder, r1_file, r2_file, get_ref_seq('RHCE')[1])
     #step_03(get_ref_seq('RHCE'), rhce_output_folder, file_name)
     step_04(file_name, rhce_output_folder)
-    step_05(get_ref_seq('RHCE'), rhce_output_folder, file_name)
+    step_05(get_ref_seq('RHCE')[1], rhce_output_folder, file_name)
 
 def get_ref_seq(file_name):
     # Get RefSeq
     if 'RHD' in file_name:
-        return f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHD.fasta"
-        #return f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHD_Exome.fasta"
+        return [
+            f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHD.fasta",
+            f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHD_Exome_new.fasta"
+        ]
     elif 'RHCE' in file_name:
-        return f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHCE.fasta"
-        #return f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHCE_Exome.fasta"
-    return ''
+        return [
+            f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHCE.fasta",
+            f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHCE_Exome_new.fasta"
+        ]
+    return []
 
 def get_r2_file(fastq_gz_folder, file_name):
     prefix = file_name.split("_")
@@ -155,18 +158,18 @@ def step_02_spades(file_name, output_folder, r1_file, r2_file):
     print("Step 2: " + command)
     subprocess.call(command, shell=True)
 
-def step_02_minimap2(file_name, output_folder, r1_file, r2_file, ref_seq):
+def step_02_minimap2(file_name, output_folder, trimmed_folder, r1_file, r2_file, ref_seq):
     #Execute:
     #minimap2 -a -t 2 -x sr sequence_reference.fasta assembly/$FILE_R1_trim.fastq.gz assembly/FILE_R2_trim.fastq.gz
     # | samtools view -bS -F 4 - | samtools sort -o LACENMT_20240516_1173_S22.sorted.bam
     r1_stripped = r1_file.strip(".fastq.gz")
     r2_stripped = r2_file.strip(".fastq.gz")
 
-    if not os.path.exists(f"{output_folder}assembly/tmp/"):
-        os.makedirs(f"{output_folder}assembly/tmp/")
+    if not os.path.exists(f"{trimmed_folder}assembly/tmp/"):
+        os.makedirs(f"{trimmed_folder}assembly/tmp/")
 
-    command = f"minimap2 -a -t 2 -x sr {ref_seq} {output_folder}{r1_stripped}_trimmed.fastq.gz \
-        {output_folder}{r2_stripped}_trimmed.fastq.gz \
+    command = f"minimap2 -a -t 2 -x sr {ref_seq} {trimmed_folder}{r1_stripped}_trimmed.fastq.gz \
+        {trimmed_folder}{r2_stripped}_trimmed.fastq.gz \
             | samtools view -bS -F 4 - | samtools sort -o {output_folder}{r1_stripped}_sorted.bam"
 
     print("Step 2: " + command)
