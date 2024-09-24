@@ -7,7 +7,7 @@ import os
 
 import time
 
-def Trimmomatic():
+def trimmomatic():
     fastq_gz_folder = "/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/dataset/FASTQ/"
 
     print("Running Trimmomatic pipeline...\n")
@@ -21,6 +21,21 @@ def Trimmomatic():
         r2_file = get_r2_file(fastq_gz_folder, file_name)
         r2_file.join(".fastq.gz")
         print(r2_file)
+        #trimmed_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/trimmed/{file_name}/"
+        output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}/"
+        #if not os.path.exists(trimmed_folder):
+        #    os.makedirs(trimmed_folder)
+        #if not os.path.exists(output_folder):
+        #    os.makedirs(output_folder)
+
+        '''
+        if ref_seq:
+            singleGeneRun(fastq_gz_folder, file_name, r1_file, r2_file, ref_seq)
+        else:
+            bothGenesRun(fastq_gz_folder, file_name, r1_file, r2_file)
+        '''
+
+        
         output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}/"
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
@@ -30,13 +45,57 @@ def Trimmomatic():
         #step_03(ref_seq, output_folder, file_name)
         step_04(file_name, output_folder)
         step_05(ref_seq, output_folder, file_name)
+        
+
+def singleGeneRun(fastq_gz_folder, file_name, r1_file, r2_file, ref_seq):
+    trimmed_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/trimmed/{file_name}/"
+    output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}/"
+    if not os.path.exists(trimmed_folder):
+        os.makedirs(trimmed_folder)
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
+    step_01(fastq_gz_folder, r1_file, r2_file, trimmed_folder)
+    step_02_minimap2(file_name, output_folder, trimmed_folder, r1_file, r2_file, ref_seq)
+    #step_03(ref_seq, output_folder, file_name)
+    step_04(file_name, output_folder)
+    step_05(ref_seq, output_folder, file_name)
+
+def bothGenesRun(fastq_gz_folder, file_name, r1_file, r2_file):
+    #output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}/"
+    trimmed_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/trimmed/{file_name}/"
+    if not os.path.exists(trimmed_folder):
+        os.makedirs(trimmed_folder)
+    # for both
+    step_01(fastq_gz_folder, r1_file, r2_file, trimmed_folder)
+
+    # FOR RHD
+    rhd_output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}_RHD/"
+    if not os.path.exists(rhd_output_folder):
+        os.makedirs(rhd_output_folder)
+    step_02_minimap2(file_name, rhd_output_folder, trimmed_folder, r1_file, r2_file, get_ref_seq('RHD'))
+    #step_03(get_ref_seq('RHD'), rhd_output_folder, file_name)
+    step_04(file_name, rhd_output_folder)
+    step_05(get_ref_seq('RHD'), rhd_output_folder, file_name)
+
+    # FOR RHCE
+    rhce_output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}_RHCE/"
+    if not os.path.exists(rhce_output_folder):
+        os.makedirs(rhce_output_folder)
+    step_02_minimap2(file_name, rhce_output_folder, trimmed_folder, r1_file, r2_file, get_ref_seq('RHCE'))
+    #step_03(get_ref_seq('RHCE'), rhce_output_folder, file_name)
+    step_04(file_name, rhce_output_folder)
+    step_05(get_ref_seq('RHCE'), rhce_output_folder, file_name)
 
 def get_ref_seq(file_name):
     # Get RefSeq
     if 'RHD' in file_name:
         return f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHD.fasta"
+        #return f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHD_Exome.fasta"
     elif 'RHCE' in file_name:
         return f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHCE.fasta"
+        #return f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHCE_Exome.fasta"
+    return ''
 
 def get_r2_file(fastq_gz_folder, file_name):
     prefix = file_name.split("_")
@@ -167,4 +226,4 @@ def step_05(ref_seq, output_folder, file_name):
     subprocess.check_call(f"echo {ref_name} > {output_folder}{file_name}_draft.fasta", shell=True)
     subprocess.check_call(f"tail -n +2 {output_folder}{file_name}_new_consensus.fasta >> {output_folder}{file_name}_draft.fasta", shell=True)
     subprocess.check_call(f"sed 's/>'\"{file_name}\"'/>'\"{file_name}\"'/g' {output_folder}{file_name}_draft.fasta > {output_folder}{file_name}_consensus.fasta", shell=True)
-Trimmomatic()
+trimmomatic()
