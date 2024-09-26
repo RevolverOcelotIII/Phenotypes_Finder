@@ -8,6 +8,26 @@ def find_snp_type(gene, relative_position, ref, alt):
     mutation_type = [mutation for mutation in mutation_table if f'c.{relative_position}{ref}>{alt}' in mutation['Nucleotide change']]
     return mutation_type
 
+def find_exon_position_new(file_path, full_position):
+    with open(file_path, 'r') as file:
+        # Lê todas as linhas do arquivo
+        lines = file.readlines()
+
+    # Ignora a primeira linha
+    sequence = ''.join(lines[1:]).replace('\n', '')
+
+    # Remover todos os 'N's da sequência
+    sequence_without_introns = sequence.replace('N', '')
+
+    # Contabilizar quantos caracteres válidos ocorreram até a posição desejada
+    contador_validos = 0
+    for indice, caractere in enumerate(sequence):
+        if caractere != 'N':
+            contador_validos += 1
+        if indice + 1 == full_position:
+            return contador_validos
+
+    return None  # Caso a posição total esteja fora do intervalo do arquivo
 
 def find_exon_position(position, gene):
     if gene == 'RHD':
@@ -64,8 +84,14 @@ def find_snps():
         # Caminho para o arquivo BAM
         bam_file = [f for f in os.listdir(f"{result_folder}{result}") if f.endswith("_sorted.bam")]
 
+        if len(bam_file) == 0:
+            continue
+
         # Caminho para o arquivo VCF gerado no pipeline
         vcf_file = [f for f in os.listdir(f"{result_folder}{result}") if f.endswith("_test.vcf.gz")]
+
+        # Caminho do consenso gerado no pipeline
+        consensus_file = [f for f in os.listdir(f"{result_folder}{result}") if f.endswith("_new_consensus.fasta")]
 
         # Abrir o arquivo BAM
         bam = pysam.AlignmentFile(f"{result_folder}{result}/{bam_file[0]}", "rb")
@@ -99,14 +125,14 @@ def find_snps():
                                 if 'RHD' in result:
                                     gene = 'RHD'
                                 else:
-                                    gene = 'RHCe'
+                                    gene = 'RHCE'
                                 
-                                relative_position = find_exon_position(pos, gene)
+                                relative_position = find_exon_position_new(f"{result_folder}{result}/{consensus_file[0]}", pos)#find_exon_position(pos, gene)
                                 #print(relative_position)
                                 if relative_position is not None: 
-                                    if relative_position[0]!=0:
-                                        snp_types = find_snp_type(gene, relative_position[0], ref, alt)
-                                        print(f"SNP encontrado em {chrom}:{pos} ( exon {relative_position[1]}:c.{relative_position[0]} ). Ref: {ref}, Alt: {alt} | Deleção? {isdeletion} | Indel? {indel} | type(s): {[snp_type['Phenotype'] for snp_type in snp_types]} | Qual: {qual}")
+                                    if relative_position!=0:
+                                        snp_types = find_snp_type(gene, relative_position, ref, alt)
+                                        print(f"SNP encontrado em {chrom}:{pos} ( exon N/A:c.{relative_position} ). Ref: {ref}, Alt: {alt} | Deleção? {isdeletion} | Indel? {indel} | type(s): {[snp_type['Phenotype'] for snp_type in snp_types]} | Qual: {qual}")
                                     else:
                                         print(f"SNP encontrado em {chrom}:{pos}, Ref: {ref}, Alt: {alt} | Deleção? {isdeletion} | Indel? {indel} | Qual: {qual}")
                                 else:

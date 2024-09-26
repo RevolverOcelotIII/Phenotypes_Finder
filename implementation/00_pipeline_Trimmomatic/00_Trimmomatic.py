@@ -70,8 +70,10 @@ def bothGenesRun(fastq_gz_folder, file_name, r1_file, r2_file):
 
     # FOR RHD
     rhd_output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}_RHD/"
+
     if not os.path.exists(rhd_output_folder):
         os.makedirs(rhd_output_folder)
+
     step_02_minimap2(file_name, rhd_output_folder, trimmed_folder, r1_file, r2_file, get_ref_seq('RHD')[0])
     #step_03(get_ref_seq('RHD'), rhd_output_folder, file_name)
     step_04(file_name, rhd_output_folder)
@@ -79,9 +81,11 @@ def bothGenesRun(fastq_gz_folder, file_name, r1_file, r2_file):
 
     # FOR RHCE
     rhce_output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}_RHCE/"
+
     if not os.path.exists(rhce_output_folder):
         os.makedirs(rhce_output_folder)
-    step_02_minimap2(file_name, rhce_output_folder, trimmed_folder, r1_file, r2_file, get_ref_seq('RHCE')[1])
+
+    step_02_minimap2(file_name, rhce_output_folder, trimmed_folder, r1_file, r2_file, get_ref_seq('RHCE')[0])
     #step_03(get_ref_seq('RHCE'), rhce_output_folder, file_name)
     step_04(file_name, rhce_output_folder)
     step_05(get_ref_seq('RHCE')[1], rhce_output_folder, file_name)
