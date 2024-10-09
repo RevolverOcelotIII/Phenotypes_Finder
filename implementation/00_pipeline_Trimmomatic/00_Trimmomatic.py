@@ -22,11 +22,13 @@ def trimmomatic():
         r2_file.join(".fastq.gz")
         print(r2_file)
         #trimmed_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/trimmed/{file_name}/"
-        output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}/"
+        #output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}/"
         #if not os.path.exists(trimmed_folder):
         #    os.makedirs(trimmed_folder)
         #if not os.path.exists(output_folder):
         #    os.makedirs(output_folder)
+        if checkFileExists(r1_file):
+            continue
 
         if len(ref_seq)> 0:
             singleGeneRun(fastq_gz_folder, file_name, r1_file, r2_file, ref_seq)
@@ -44,7 +46,12 @@ def trimmomatic():
         step_04(file_name, output_folder)
         step_05(ref_seq, output_folder, file_name)
         '''
-        
+
+def checkFileExists(file_name):
+    folder_name = file_name.strip(".fastq.gz")
+    folder_path = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/trimmed/{folder_name}"
+    return os.path.isdir(folder_path) 
+
 
 def singleGeneRun(fastq_gz_folder, file_name, r1_file, r2_file, ref_seq):
     trimmed_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/trimmed/{file_name}/"
@@ -227,7 +234,7 @@ def step_05(ref_seq, output_folder, file_name):
     subprocess.check_call(f"bedtools bamtobed -i {output_folder}{file_name}_sorted.bam > {output_folder}{file_name}_reads.bed", shell=True)
     subprocess.check_call(f"bedtools genomecov -bga -i {output_folder}{file_name}_reads.bed -g {output_folder}{file_name}.genome | awk '$4 < 1' > {output_folder}{file_name}_zero.bed", shell=True)
     subprocess.check_call(f"maskFastaFromBed -fi {ref_seq} -bed {output_folder}{file_name}_zero.bed -fo {output_folder}{file_name}_masked.fasta", shell=True)
-    subprocess.check_call(f"bcftools mpileup -Ou -f {output_folder}{file_name}_masked.fasta {output_folder}{file_name}_sorted.bam | bcftools call --ploidy 1 -mv -Oz -o {output_folder}{file_name}_test.vcf.gz", shell=True)
+    subprocess.check_call(f"bcftools mpileup -Ou -f {output_folder}{file_name}_masked.fasta {output_folder}{file_name}_sorted.bam | bcftools call --ploidy 2 -mv -Oz -o {output_folder}{file_name}_test.vcf.gz", shell=True)
     subprocess.check_call(f"bcftools index {output_folder}{file_name}_test.vcf.gz", shell=True)
     subprocess.check_call(f"cat {output_folder}{file_name}_masked.fasta | bcftools consensus {output_folder}{file_name}_test.vcf.gz > {output_folder}{file_name}_new_consensus.fasta", shell=True)
     subprocess.check_call(f"echo {ref_name} > {output_folder}{file_name}_draft.fasta", shell=True)
