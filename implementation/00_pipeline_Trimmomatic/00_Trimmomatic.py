@@ -49,8 +49,8 @@ def trimmomatic():
 
 def checkFileExists(file_name):
     folder_name = file_name.strip(".fastq.gz")
-    folder_path = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/trimmed/{folder_name}"
-    return os.path.isdir(folder_path) 
+    folder_path = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{folder_name}"
+    return os.path.isdir(folder_path) or os.path.isdir(f"{folder_path}_RHD") or os.path.isdir(f"{folder_path}_RHCE")
 
 
 def singleGeneRun(fastq_gz_folder, file_name, r1_file, r2_file, ref_seq):
@@ -63,6 +63,7 @@ def singleGeneRun(fastq_gz_folder, file_name, r1_file, r2_file, ref_seq):
 
     step_01(fastq_gz_folder, r1_file, r2_file, trimmed_folder)
     step_02_minimap2(file_name, output_folder, trimmed_folder, r1_file, r2_file, ref_seq[0])
+    #step_02_spades(file_name, output_folder, trimmed_folder, r1_file, r2_file)
     #step_03(ref_seq, output_folder, file_name)
     step_04(file_name, output_folder)
     step_05(ref_seq[1], output_folder, file_name)
@@ -148,7 +149,7 @@ def step_01(fastq_gz_folder, r1_file, r2_file, output_folder):
     print("Step 1: " + command)
     subprocess.call(command, shell=True)
 
-def step_02_spades(file_name, output_folder, r1_file, r2_file):
+def step_02_spades(file_name, output_folder, trimm_folder, r1_file, r2_file):
     # Execute:
     # spades.py 
     # -1 $NAMEFILE"_L001_R1_trimmed_001.fastq.gz" 
@@ -163,8 +164,8 @@ def step_02_spades(file_name, output_folder, r1_file, r2_file):
     print(output_folder)
     print(r1_stripped)
     command = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/SPAdes-3.15.5/bin/spades.py \
-        -1 {output_folder}{r1_stripped}_trimmed.fastq.gz \
-        -2 {output_folder}{r2_stripped}_trimmed.fastq.gz \
+        -1 {trimm_folder}{r1_stripped}_trimmed.fastq.gz \
+        -2 {trimm_folder}{r2_stripped}_trimmed.fastq.gz \
         -t 8 -m 4 --only-assembler -k 21,33,55,77 -o {output_folder}assembly"
     print("Step 2: " + command)
     subprocess.call(command, shell=True)
@@ -234,7 +235,7 @@ def step_05(ref_seq, output_folder, file_name):
     subprocess.check_call(f"bedtools bamtobed -i {output_folder}{file_name}_sorted.bam > {output_folder}{file_name}_reads.bed", shell=True)
     subprocess.check_call(f"bedtools genomecov -bga -i {output_folder}{file_name}_reads.bed -g {output_folder}{file_name}.genome | awk '$4 < 1' > {output_folder}{file_name}_zero.bed", shell=True)
     subprocess.check_call(f"maskFastaFromBed -fi {ref_seq} -bed {output_folder}{file_name}_zero.bed -fo {output_folder}{file_name}_masked.fasta", shell=True)
-    subprocess.check_call(f"bcftools mpileup -Ou -f {output_folder}{file_name}_masked.fasta {output_folder}{file_name}_sorted.bam | bcftools call --ploidy 2 -mv -Oz -o {output_folder}{file_name}_test.vcf.gz", shell=True)
+    subprocess.check_call(f"bcftools mpileup -Ou -f {output_folder}{file_name}_masked.fasta {output_folder}{file_name}_sorted.bam | bcftools call --ploidy 1 -mv -Oz -o {output_folder}{file_name}_test.vcf.gz", shell=True)
     subprocess.check_call(f"bcftools index {output_folder}{file_name}_test.vcf.gz", shell=True)
     subprocess.check_call(f"cat {output_folder}{file_name}_masked.fasta | bcftools consensus {output_folder}{file_name}_test.vcf.gz > {output_folder}{file_name}_new_consensus.fasta", shell=True)
     subprocess.check_call(f"echo {ref_name} > {output_folder}{file_name}_draft.fasta", shell=True)

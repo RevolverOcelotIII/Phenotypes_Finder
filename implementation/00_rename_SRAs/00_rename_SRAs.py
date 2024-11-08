@@ -1,7 +1,6 @@
 import os
 import re
 import requests
-from bs4 import BeautifulSoup
 
 # Diretório onde os arquivos estão localizados
 directory = '/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/dataset/FASTQ'

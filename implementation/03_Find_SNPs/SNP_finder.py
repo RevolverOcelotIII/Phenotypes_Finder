@@ -2,7 +2,10 @@ import pysam
 import vcf
 import os
 import re
-import csv
+import pandas
+from openpyxl import load_workbook
+from openpyxl.styles import Font, Border, Side
+
 from Scrap_Snp_Table import get_gene_mutation_table 
 
 terminal_bg_white = "\033[47m"
@@ -10,10 +13,13 @@ terminal_bg_cyan = "\033[46m"
 terminal_black = "\033[30m"
 terminal_reset = "\033[0m"
 
-def count_phenotype_snps(phenotype_list, mutation):
+def count_phenotype_snps(phenotype_list, mutation, is_Rhd):
     snp_pattern = r'c\.\d+[A-Z]>[A-Z]'
     if mutation['Phenotype'] not in phenotype_list:
-        phenotype_list[mutation['Phenotype']] = [1, len(re.findall(snp_pattern, mutation['Nucleotide change']))]
+        if is_Rhd:
+            phenotype_list[mutation['Phenotype']] = [1, len(re.findall(snp_pattern, mutation['Nucleotide change'])), mutation['Classification']]
+        else:
+            phenotype_list[mutation['Phenotype']] = [1, len(re.findall(snp_pattern, mutation['Nucleotide change']))]
     else:
         phenotype_list[mutation['Phenotype']][0]+=1
 
@@ -22,7 +28,7 @@ def find_snp_type(gene, relative_position, ref, alt, phenotype_list):
     mutation_types = [mutation for mutation in mutation_table if f'c.{relative_position}{ref}>{alt}' in mutation['Nucleotide change']]
     #print(mutation_type)
     for mutation in mutation_types:
-        count_phenotype_snps(phenotype_list, mutation)
+        count_phenotype_snps(phenotype_list, mutation, gene == "RHD")
     return mutation_types
 
 def find_exome_position(file_path, full_position):
@@ -70,10 +76,24 @@ def find_exon(relative_position, gene):
         if 1267 <= relative_position <= 2814: return 10
     return None
 
+def format_sheet(csv_path, csv_folder):
+    df = pandas.read_csv(csv_path,  sep=",", skipinitialspace=True)
+    df.to_excel(f"{csv_folder}/SNP_Sheet.xlsx", index=False)
+    workbook = load_workbook(f"{csv_folder}/SNP_Sheet.xlsx")
+    sheet = workbook.active
+    border = Border(
+        left=Side(border_style="thin", color="000000"),
+        right=Side(border_style="thin", color="000000"),
+        top=Side(border_style="thin", color="000000"),
+        bottom=Side(border_style="thin", color="000000")
+    )
+    for cell in sheet[1]:
+        cell.font = Font(bold=True)
+
 def find_snps():
     result_folder = "/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/"
     sheet_folder = "/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/SNP_Sheet/"
-    sheet_path = f'{sheet_path}SNP_Sheet.csv'
+    sheet_path = f'{sheet_folder}SNP_Sheet.csv'
     results = os.listdir(result_folder)
     snp_counter = 0
     snp_history = []
@@ -83,7 +103,7 @@ def find_snps():
         os.remove(sheet_path)
 
     with open(sheet_path, mode='a', newline='', encoding='utf-8') as snp_sheet:
-        sheet_columns = 'Sample, RefSeq, Genome Position, Exome Position, Exon, Reference, Mutation, Possible Phenotypes, Quality, Sample Phenotype, Phenotype SNPs'
+        sheet_columns = 'Sample, RefSeq, Genome Position, Exome Position, Exon, Reference, Mutation, Possible Phenotypes, Quality, Sample Phenotype, Phenotype SNPs, Classification'
         snp_sheet.write(sheet_columns)
         for result in results:
             # Caminho para o arquivo BAM
@@ -104,7 +124,8 @@ def find_snps():
             # Inicializar o leitor VCF
             vcf_reader = vcf.Reader(filename=f"{result_folder}{result}/{vcf_file[0]}")
             phenotype_list = {}
-            #print(f'{terminal_bg_white}{terminal_black}Sequência: {result}{terminal_reset}')
+            print(f'{terminal_bg_white}{terminal_black}Sequência: {result}{terminal_reset}')
+            snp_sample_count = 0
             # Loop através das entradas do VCF
             for record in vcf_reader:
                 # Obter informações sobre a posição do SNP
@@ -127,6 +148,7 @@ def find_snps():
 
                                 # Verificar se a base difere da referência (SNP)
                                 if base != ref:
+                                    snp_sample_count += 1
                                     gene = ''
                                     if 'RHD' in result:
                                         gene = 'RHD'
@@ -140,10 +162,10 @@ def find_snps():
                                         possible_phenotypes = [snp_type['Phenotype'] for snp_type in snp_types]
                                         phenotypes_string = ", ".join(possible_phenotypes).replace("\n", "")
                                         snp_row =  f'\n{result}, { chrom }, { pos }, { relative_position }, { find_exon(relative_position, gene) }, { ref }, { alt }, "{ phenotypes_string }", {qual}'
-                                        #print(f"SNP encontrado em {chrom}:{pos} ( exon N/A:c.{relative_position} ). Ref: {ref}, Alt: {alt} | Deleção? {isdeletion} | Indel? {indel} | Tipos(s): {len([snp_type['Phenotype'] for snp_type in snp_types])} possíveis | Qual: {qual}")
+                                        print(f"SNP encontrado em {chrom}:{pos} ( exon N/A:c.{relative_position} ). Ref: {ref}, Alt: {alt} | Deleção? {isdeletion} | Indel? {indel} | Tipos(s): {len([snp_type['Phenotype'] for snp_type in snp_types])} possíveis | Qual: {qual}")
                                     else:
                                         snp_row = f'\n{result}, { chrom }, { pos }, , , { ref }, { alt }, , {qual}'
-                                        #print(f"SNP encontrado em {chrom}:{pos}, Ref: {ref}, Alt: {alt} | Deleção? {isdeletion} | Indel? {indel} | Qual: {qual}")
+                                        print(f"SNP encontrado em {chrom}:{pos}, Ref: {ref}, Alt: {alt} | Deleção? {isdeletion} | Indel? {indel} | Qual: {qual}")
 
                                     snp_sheet.write(snp_row)
                                     if pos not in snp_history:
@@ -156,12 +178,24 @@ def find_snps():
             #print(f'{terminal_bg_cyan}{terminal_black}Fenótipos encontrados em {result}:{terminal_reset}')
             #if len(phenotype_list.items()) > 0:
             #    snp_sheet.write('\nSample Phenotypes, Phenotype SNPs')
-            for phenotype, snp_count in phenotype_list.items():
-                if snp_count[0]==snp_count[1]:
+            for phenotype, snp_data in phenotype_list.items():
+                if snp_data[0]==snp_data[1]:
                     no_break_phenotype = phenotype.replace("\n", "")
-                    snp_sheet.write(f'\n{result}, , , , , , , , , "{no_break_phenotype}", {snp_count[1]}')
-                    #print(f"{phenotype}: Foram encontradas {snp_count[0]} de {snp_count[1]} SNPs")
+                    if len(snp_data) > 2:
+                        snp_sheet.write(f'\n{result}, , , , , , , , , "{no_break_phenotype}", {snp_data[1]}, {snp_data[2]}')
+                    else:
+                        snp_sheet.write(f'\n{result}, , , , , , , , , "{no_break_phenotype}", {snp_data[1]}')
+                    print(f"{phenotype}: Foram encontradas {snp_data[0]} de {snp_data[1]} SNPs")
+            if snp_sample_count == 0:
+                if 'RHD' in result:
+                    snp_sheet.write(f'\n{result}, , , , , , , , , -, No SNPs found (same as reference), D')
+                else:
+                    snp_sheet.write(f'\n{result}, , , , , , , , , -, No SNPs found (same as reference), -')
 
         print("SNPs encontrados: ", len(snp_history))
         # print(snp_history)
+    sheet_folder = "/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/SNP_Sheet/"
+    sheet_path = f'{sheet_folder}SNP_Sheet.csv'
+    format_sheet(sheet_path, sheet_folder)
+
 find_snps()
