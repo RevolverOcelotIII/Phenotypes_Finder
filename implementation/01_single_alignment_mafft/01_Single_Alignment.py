@@ -1,18 +1,18 @@
 import sys
-sys.path.append('/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation')
+sys.path.append('/home/domdeny/src/bioinfo/genome-api/pipeline/Phenotypes_Finder/implementation')
 import os
 import subprocess
 import Gene
 
 # Alinhar os consensos com a sequência de referência
 
-RESULT_FOLDER = "/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/"
+RESULT_FOLDER = "/home/domdeny/src/bioinfo/genome-api/pipeline/Phenotypes_Finder/result/Trimmomatic/"
 
 def get_ref_seq(file_name):
     if "RHD" in file_name:
-        return f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHD.fasta"
+        return f"/home/domdeny/src/bioinfo/genome-api/pipeline/Phenotypes_Finder/implementation/RefSeq/RefSeq_RHD.fasta"
     elif "RHCE" in file_name:
-        return f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHCE.fasta"
+        return f"/home/domdeny/src/bioinfo/genome-api/pipeline/Phenotypes_Finder/implementation/RefSeq/RefSeq_RHCE.fasta"
     
 def single_alignment():
     consensus_list = os.listdir(RESULT_FOLDER)

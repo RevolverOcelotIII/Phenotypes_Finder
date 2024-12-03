@@ -3,7 +3,7 @@ import re
 import requests
 
 # Diretório onde os arquivos estão localizados
-directory = '/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/dataset/FASTQ'
+directory = '/home/domdeny/src/bioinfo/genome-api/pipeline/Phenotypes_Finder/dataset/FASTQ'
 
 # Regex para extrair a informação desejada
 regex_pattern = r'[A-Za-z0-9\-]+_S\d+_L\d{3}_R[12]_001'

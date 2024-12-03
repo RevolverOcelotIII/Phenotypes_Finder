@@ -1,114 +1,144 @@
 import sys
-sys.path.append('/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation')
+from config import ROOT_PATH
 
 import subprocess
 import os
-# import Gene as Gene
+
+
+sys.path.append(f'{ROOT_PATH}pipeline/Phenotypes_Finder/implementation')
+
 
 import time
+from database.models.sample import update_sample_process
 
-def trimmomatic():
-    fastq_gz_folder = "/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/dataset/FASTQ/"
+def trimmomatic(project_uuid, sample_name, sample_uuid, genes):
+    try:
+        fastq_gz_folder = f"{ROOT_PATH}pipeline/Phenotypes_Finder/dataset/FASTQ/{project_uuid}/{sample_uuid}/"
+        print(fastq_gz_folder)
 
-    print("Running Trimmomatic pipeline...\n")
+        print("Running Trimmomatic pipeline...\n")
 
-    r1_files = [f for f in os.listdir(fastq_gz_folder) if (f.endswith(".fastq.gz") and "_R1" in f.upper())]
-    print(r1_files)
-    
-    for r1_file in r1_files:
-        file_name = r1_file.strip(".fastq.gz")
-        ref_seq = get_ref_seq(file_name)
-        r2_file = get_r2_file(fastq_gz_folder, file_name)
-        r2_file.join(".fastq.gz")
-        print(r2_file)
-        #trimmed_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/trimmed/{file_name}/"
-        #output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}/"
-        #if not os.path.exists(trimmed_folder):
-        #    os.makedirs(trimmed_folder)
-        #if not os.path.exists(output_folder):
-        #    os.makedirs(output_folder)
-        if checkFileExists(r1_file):
-            continue
+        r1_files = [f for f in os.listdir(fastq_gz_folder) if (f.endswith(".fastq.gz") and "_R1" in f.upper() and sample_name in f)]
+        print(r1_files)
+        if (len(r1_files) == 0):
+            raise ValueError("r1 file not found")
+        for r1_file in r1_files:
+            file_name = r1_file.strip(".fastq.gz")
+            ref_seq = get_ref_seq(genes[0])
+            r2_file = get_r2_file(fastq_gz_folder, file_name)
+            r2_file.join(".fastq.gz")
+            print(r2_file)
+            #trimmed_folder = f"/home/domdeny/src/bioinfo/genome-api/pipeline/Phenotypes_Finder/result/Trimmomatic/trimmed/{file_name}/"
+            #output_folder = f"/home/domdeny/src/bioinfo/genome-api/pipeline/Phenotypes_Finder/result/Trimmomatic/{file_name}/"
+            #if not os.path.exists(trimmed_folder):
+            #    os.makedirs(trimmed_folder)
+            #if not os.path.exists(output_folder):
+            #    os.makedirs(output_folder)
+            if checkFileExists(sample_uuid):
+                continue
 
-        if len(ref_seq)> 0:
-            singleGeneRun(fastq_gz_folder, file_name, r1_file, r2_file, ref_seq)
-        else:
-            bothGenesRun(fastq_gz_folder, file_name, r1_file, r2_file)
+            #if len(ref_seq)> 0:
+            if len(genes) == 1:
+                singleGeneRun(fastq_gz_folder, file_name, r1_file, r2_file, ref_seq, sample_uuid, genes[0])
+            else:
+                bothGenesRun(fastq_gz_folder, file_name, r1_file, r2_file, sample_uuid)
 
-        '''
-        output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}/"
-        if not os.path.exists(output_folder):
-            os.makedirs(output_folder)
+            '''
+            output_folder = f"/home/domdeny/src/bioinfo/genome-api/pipeline/Phenotypes_Finder/result/Trimmomatic/{file_name}/"
+            if not os.path.exists(output_folder):
+                os.makedirs(output_folder)
 
-        step_01(fastq_gz_folder, r1_file, r2_file, output_folder)
-        step_02_minimap2(file_name, output_folder, r1_file, r2_file, ref_seq)
-        #step_03(ref_seq, output_folder, file_name)
-        step_04(file_name, output_folder)
-        step_05(ref_seq, output_folder, file_name)
-        '''
+            step_01(fastq_gz_folder, r1_file, r2_file, output_folder)
+            step_02_minimap2(file_name, output_folder, r1_file, r2_file, ref_seq)
+            #step_03(ref_seq, output_folder, file_name)
+            step_04(file_name, output_folder)
+            step_05(ref_seq, output_folder, file_name)
+            '''
+    except:
+        update_sample_process(sample_uuid, 4)
 
 def checkFileExists(file_name):
     folder_name = file_name.strip(".fastq.gz")
-    folder_path = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{folder_name}"
+    folder_path = f"{ROOT_PATH}pipeline/Phenotypes_Finder/result/Trimmomatic/{folder_name}"
     return os.path.isdir(folder_path) or os.path.isdir(f"{folder_path}_RHD") or os.path.isdir(f"{folder_path}_RHCE")
 
 
-def singleGeneRun(fastq_gz_folder, file_name, r1_file, r2_file, ref_seq):
-    trimmed_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/trimmed/{file_name}/"
-    output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}/"
+def singleGeneRun(fastq_gz_folder, file_name, r1_file, r2_file, ref_seq, sample_uuid, gene):
+    trimmed_folder = f"{ROOT_PATH}pipeline/Phenotypes_Finder/result/Trimmomatic/trimmed/{sample_uuid}/"
+    output_folder = f"{ROOT_PATH}pipeline/Phenotypes_Finder/result/Trimmomatic/{sample_uuid}/{gene}/"
     if not os.path.exists(trimmed_folder):
-        os.makedirs(trimmed_folder)
+        os.makedirs(trimmed_folder, exist_ok=True)
     if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
-
+        os.makedirs(output_folder, exist_ok=True)
+    
+    update_sample_process(sample_uuid, 0)
+    
     step_01(fastq_gz_folder, r1_file, r2_file, trimmed_folder)
+
+    update_sample_process(sample_uuid, 1)
+
     step_02_minimap2(file_name, output_folder, trimmed_folder, r1_file, r2_file, ref_seq[0])
     #step_02_spades(file_name, output_folder, trimmed_folder, r1_file, r2_file)
     #step_03(ref_seq, output_folder, file_name)
     step_04(file_name, output_folder)
-    step_05(ref_seq[1], output_folder, file_name)
 
-def bothGenesRun(fastq_gz_folder, file_name, r1_file, r2_file):
-    #output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}/"
-    trimmed_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/trimmed/{file_name}/"
+    update_sample_process(sample_uuid, 2)
+    
+    step_05(ref_seq[1], output_folder, file_name)
+    
+    update_sample_process(sample_uuid, 3)
+
+def bothGenesRun(fastq_gz_folder, file_name, r1_file, r2_file, sample_uuid):
+    #output_folder = f"/home/domdeny/src/bioinfo/genome-api/pipeline/Phenotypes_Finder/result/Trimmomatic/{file_name}/"
+    trimmed_folder = f"{ROOT_PATH}pipeline/Phenotypes_Finder/result/Trimmomatic/trimmed/{sample_uuid}/"
     if not os.path.exists(trimmed_folder):
-        os.makedirs(trimmed_folder)
+        os.makedirs(trimmed_folder, exist_ok=True)
+
+    update_sample_process(sample_uuid, 0)
+
     # for both
     step_01(fastq_gz_folder, r1_file, r2_file, trimmed_folder)
 
     # FOR RHD
-    rhd_output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}_RHD/"
+    rhd_output_folder = f"{ROOT_PATH}pipeline/Phenotypes_Finder/result/Trimmomatic/{sample_uuid}/RHD/"
 
     if not os.path.exists(rhd_output_folder):
-        os.makedirs(rhd_output_folder)
+        os.makedirs(rhd_output_folder, exist_ok=True)
+
+    update_sample_process(sample_uuid, 1)
 
     step_02_minimap2(file_name, rhd_output_folder, trimmed_folder, r1_file, r2_file, get_ref_seq('RHD')[0])
     #step_03(get_ref_seq('RHD'), rhd_output_folder, file_name)
     step_04(file_name, rhd_output_folder)
+
+    update_sample_process(sample_uuid, 2)
+
     step_05(get_ref_seq('RHD')[1], rhd_output_folder, file_name)
 
     # FOR RHCE
-    rhce_output_folder = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/result/Trimmomatic/{file_name}_RHCE/"
+    rhce_output_folder = f"{ROOT_PATH}pipeline/Phenotypes_Finder/result/Trimmomatic/{sample_uuid}/RHCE/"
 
     if not os.path.exists(rhce_output_folder):
-        os.makedirs(rhce_output_folder)
-
+        os.makedirs(rhce_output_folder, exist_ok=True)
+    update_sample_process(sample_uuid, 1)
     step_02_minimap2(file_name, rhce_output_folder, trimmed_folder, r1_file, r2_file, get_ref_seq('RHCE')[0])
     #step_03(get_ref_seq('RHCE'), rhce_output_folder, file_name)
     step_04(file_name, rhce_output_folder)
+    update_sample_process(sample_uuid, 2)
     step_05(get_ref_seq('RHCE')[1], rhce_output_folder, file_name)
+    update_sample_process(sample_uuid, 3)
 
 def get_ref_seq(file_name):
     # Get RefSeq
     if 'RHD' in file_name:
         return [
-            f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHD.fasta",
-            f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHD_Exome_new.fasta"
+            f"{ROOT_PATH}pipeline/Phenotypes_Finder/implementation/RefSeq/RefSeq_RHD.fasta",
+            f"{ROOT_PATH}pipeline/Phenotypes_Finder/implementation/RefSeq/RefSeq_RHD_Exome_new.fasta"
         ]
     elif 'RHCE' in file_name:
         return [
-            f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHCE.fasta",
-            f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/RefSeq/RefSeq_RHCE_Exome_new.fasta"
+            f"{ROOT_PATH}pipeline/Phenotypes_Finder/implementation/RefSeq/RefSeq_RHCE.fasta",
+            f"{ROOT_PATH}pipeline/Phenotypes_Finder/implementation/RefSeq/RefSeq_RHCE_Exome_new.fasta"
         ]
     return []
 
@@ -133,9 +163,9 @@ def step_01(fastq_gz_folder, r1_file, r2_file, output_folder):
     r2_stripped = r2_file.strip(".fastq.gz")
     print(r2_stripped)
     if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
+        os.makedirs(output_folder, exist_ok=True)
 
-    adapters = "/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/implementation/00_pipeline_Trimmomatic/Adapters/adapters.fasta"
+    adapters = f"{ROOT_PATH}pipeline/Phenotypes_Finder/implementation/pipeline_Trimmomatic/Adapters/adapters.fasta"
     # SE se single-end, PE se paired-end
     command = f"trimmomatic PE -phred33 -threads 8 \
         {fastq_gz_folder}{r1_file} \
@@ -159,11 +189,11 @@ def step_02_spades(file_name, output_folder, trimm_folder, r1_file, r2_file):
     r1_stripped = r1_file.strip(".fastq.gz")
     r2_stripped = r2_file.strip(".fastq.gz")
     if not os.path.exists(f"{output_folder}assembly/tmp/"):
-        os.makedirs(f"{output_folder}assembly/tmp/")
+        os.makedirs(f"{output_folder}assembly/tmp/", exist_ok=True)
     # remover -2 caso não seja paired-end
     print(output_folder)
     print(r1_stripped)
-    command = f"/home/domdeny/src/bioinfo/pipeline-jessica/PipelineJessica/SPAdes-3.15.5/bin/spades.py \
+    command = f"{ROOT_PATH}pipeline/Phenotypes_Finder/SPAdes-3.15.5/bin/spades.py \
         -1 {trimm_folder}{r1_stripped}_trimmed.fastq.gz \
         -2 {trimm_folder}{r2_stripped}_trimmed.fastq.gz \
         -t 8 -m 4 --only-assembler -k 21,33,55,77 -o {output_folder}assembly"
@@ -178,7 +208,7 @@ def step_02_minimap2(file_name, output_folder, trimmed_folder, r1_file, r2_file,
     r2_stripped = r2_file.strip(".fastq.gz")
 
     if not os.path.exists(f"{trimmed_folder}assembly/tmp/"):
-        os.makedirs(f"{trimmed_folder}assembly/tmp/")
+        os.makedirs(f"{trimmed_folder}assembly/tmp/", exist_ok=True)
 
     command = f"minimap2 -a -t 2 -x sr {ref_seq} {trimmed_folder}{r1_stripped}_trimmed.fastq.gz \
         {trimmed_folder}{r2_stripped}_trimmed.fastq.gz \
@@ -235,10 +265,9 @@ def step_05(ref_seq, output_folder, file_name):
     subprocess.check_call(f"bedtools bamtobed -i {output_folder}{file_name}_sorted.bam > {output_folder}{file_name}_reads.bed", shell=True)
     subprocess.check_call(f"bedtools genomecov -bga -i {output_folder}{file_name}_reads.bed -g {output_folder}{file_name}.genome | awk '$4 < 1' > {output_folder}{file_name}_zero.bed", shell=True)
     subprocess.check_call(f"maskFastaFromBed -fi {ref_seq} -bed {output_folder}{file_name}_zero.bed -fo {output_folder}{file_name}_masked.fasta", shell=True)
-    subprocess.check_call(f"bcftools mpileup -Ou -f {output_folder}{file_name}_masked.fasta {output_folder}{file_name}_sorted.bam | bcftools call --ploidy 1 -mv -Oz -o {output_folder}{file_name}_test.vcf.gz", shell=True)
+    subprocess.check_call(f"bcftools mpileup -Ou -f {output_folder}{file_name}_masked.fasta --min-MQ 30 {output_folder}{file_name}_sorted.bam | bcftools call --ploidy 1 -mv -Oz -o {output_folder}{file_name}_test.vcf.gz", shell=True)
     subprocess.check_call(f"bcftools index {output_folder}{file_name}_test.vcf.gz", shell=True)
     subprocess.check_call(f"cat {output_folder}{file_name}_masked.fasta | bcftools consensus {output_folder}{file_name}_test.vcf.gz > {output_folder}{file_name}_new_consensus.fasta", shell=True)
     subprocess.check_call(f"echo {ref_name} > {output_folder}{file_name}_draft.fasta", shell=True)
     subprocess.check_call(f"tail -n +2 {output_folder}{file_name}_new_consensus.fasta >> {output_folder}{file_name}_draft.fasta", shell=True)
     subprocess.check_call(f"sed 's/>'\"{file_name}\"'/>'\"{file_name}\"'/g' {output_folder}{file_name}_draft.fasta > {output_folder}{file_name}_consensus.fasta", shell=True)
-trimmomatic()
