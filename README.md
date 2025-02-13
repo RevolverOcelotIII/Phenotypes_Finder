@@ -129,11 +129,15 @@ cd pipeline
 
 ### 5.2. Clonar o repositório
 ```bash
-git clone https://github.com/seu-usuario/genome-pipeline.git
-cd genome-pipeline
+git clone https://github.com/RevolverOcelotIII/Phenotypes_Finder.git
 ```
 
-### 5.3. Instalar ferramentas externas
+### 5.3. Mudar para branch da API
+```bash
+git checkout api-caller
+```
+
+### 5.4. Instalar ferramentas externas
 ```bash
 sudo apt install -y bedtools bcftools minimap2 samtools bwa mafft
 ```
