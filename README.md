@@ -55,41 +55,15 @@ O front-end ficará disponível em `http://localhost:3000/`.
 
 ---
 
-## 3. Instalação do Banco de Dados (MySQL)
+## 3. Instalação do Back-end (Flask API)
 
-### 3.1. Iniciar o serviço do MySQL
-```bash
-sudo systemctl start mysql
-```
-
-### 3.2. Acessar o MySQL como root
-```bash
-mysql -u root -p
-```
-
-### 3.3. Criar o banco de dados e configurar usuário
-```sql
-CREATE DATABASE snpfinder;
-CREATE USER 'genome_user'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON snpfinder.* TO 'root'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
-```
-
-### 3.4. Importar estrutura do banco de dados
-```bash
-mysql -u root -p snpfinder < Genome-API/arquivo.sql
-```
-
-## 4. Instalação do Back-end (Flask API)
-
-### 4.1. Clonar o repositório
+### 3.1. Clonar o repositório
 ```bash
 git clone https://github.com/RevolverOcelotIII/Genome-API.git
 cd Genome-API
 ```
 
-### 3.3. Criar arquivo `.env`
+### 3.2. Criar arquivo `.env`
 Crie um arquivo `.env` dentro do diretório `Genome-API` com o seguinte conteúdo:
 
 ```env
@@ -101,12 +75,12 @@ DATABASE_PASSWORD=password
 DATABASE_SCHEMA=snpfinder
 ```
 
-### 4.4. Instalar dependências Python
+### 3.3. Instalar dependências Python
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4.5. Executar a API
+### 4.4. Executar a API
 ```bash
 python src/index.py  
 ```
@@ -114,6 +88,32 @@ python src/index.py
 A API ficará disponível em `http://localhost:5000/`.
 
 ---
+
+## 4. Instalação do Banco de Dados (MySQL)
+
+### 4.1. Iniciar o serviço do MySQL
+```bash
+sudo systemctl start mysql
+```
+
+### 4.2. Acessar o MySQL como root
+```bash
+mysql -u root -p
+```
+
+### 4.3. Criar o banco de dados e configurar usuário
+```sql
+CREATE DATABASE snpfinder;
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON snpfinder.* TO 'root'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+### 4.4. Importar estrutura do banco de dados
+```bash
+mysql -u root -p snpfinder < Genome-API/arquivo.sql
+```
 
 ## 5. Instalação do Pipeline
 
