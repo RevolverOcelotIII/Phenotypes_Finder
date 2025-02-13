@@ -40,13 +40,19 @@ REACT_APP_FETCH_API_URL=http://127.0.0.1:5000
 ```
 Onde `REACT_APP_FETCH_API_URL` trata-se do endereço da API, que pode ser configurado posteriormente.
 
+### 2.3. Instalar Node Versão 18
+```bash
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
 
-### 2.3. Instalar dependências
+
+### 2.4. Instalar dependências
 ```bash
 npm install
 ```
 
-### 2.4. Executar o ambiente de desenvolvimento
+### 2.5. Executar o ambiente de desenvolvimento
 ```bash
 npm start
 ```
