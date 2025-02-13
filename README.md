@@ -134,6 +134,7 @@ git clone https://github.com/RevolverOcelotIII/Phenotypes_Finder.git
 
 ### 5.3. Mudar para branch da API
 ```bash
+cd Phenotypes_Finder
 git checkout api-caller
 ```
 
