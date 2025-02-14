@@ -19,9 +19,12 @@ def get_gene_mutation_table(gene):
     pass
     file_path = f'{phenotype_tables_path}{gene}PhenotypesTable.csv'
     # Ler o arquivo CSV e retornar um array de objetos
-    with open(file_path, mode='r', encoding='utf-8-sig') as file:
-        reader = csv.DictReader(file, delimiter=',')
-        return [row for row in reader]
+    try:
+        with open(file_path, mode='r', encoding='utf-8-sig') as file:
+            reader = csv.DictReader(file, delimiter=',')
+            return [row for row in reader]
+    except:
+        print('error on xlsx generation')
 
 
 #this should be on other file
@@ -101,18 +104,21 @@ def find_exon(relative_position, gene):
     return None
 
 def format_sheet(csv_path, csv_folder):
-    df = pandas.read_csv(csv_path,  sep=",", skipinitialspace=True)
-    df.to_excel(f"{csv_folder}/SNP_Sheet.xlsx", index=False)
-    workbook = load_workbook(f"{csv_folder}/SNP_Sheet.xlsx")
-    sheet = workbook.active
-    border = Border(
-        left=Side(border_style="thin", color="000000"),
-        right=Side(border_style="thin", color="000000"),
-        top=Side(border_style="thin", color="000000"),
-        bottom=Side(border_style="thin", color="000000")
-    )
-    for cell in sheet[1]:
-        cell.font = Font(bold=True)
+    try:
+        df = pandas.read_csv(csv_path,  sep=",", skipinitialspace=True)
+        df.to_excel(f"{csv_folder}/SNP_Sheet.xlsx", index=False)
+        workbook = load_workbook(f"{csv_folder}/SNP_Sheet.xlsx")
+        sheet = workbook.active
+        border = Border(
+            left=Side(border_style="thin", color="000000"),
+            right=Side(border_style="thin", color="000000"),
+            top=Side(border_style="thin", color="000000"),
+            bottom=Side(border_style="thin", color="000000")
+        )
+        for cell in sheet[1]:
+            cell.font = Font(bold=True)
+    except:
+        return
 
 def find_snps(project_uuid, sample_name, sample_uuid, gene):
     result_folder = f"{ROOT_PATH}pipeline/Phenotypes_Finder/result/Trimmomatic/{sample_uuid}/{gene}/"

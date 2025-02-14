@@ -210,9 +210,9 @@ def step_02_minimap2(file_name, output_folder, trimmed_folder, r1_file, r2_file,
     if not os.path.exists(f"{trimmed_folder}assembly/tmp/"):
         os.makedirs(f"{trimmed_folder}assembly/tmp/", exist_ok=True)
 
-    command = f"minimap2 -a -t 2 -x sr {ref_seq} {trimmed_folder}{r1_stripped}_trimmed.fastq.gz \
+    command = f"minimap2 -a -t 8 -x sr --frag=yes --secondary=yes {ref_seq} {trimmed_folder}{r1_stripped}_trimmed.fastq.gz \
         {trimmed_folder}{r2_stripped}_trimmed.fastq.gz \
-            | samtools view -bS -F 4 - | samtools sort -o {output_folder}{r1_stripped}_sorted.bam"
+            | samtools view -bS -F 4 -q 30 - | samtools sort -o {output_folder}{r1_stripped}_sorted.bam"
 
     print("Step 2: " + command)
     
@@ -263,9 +263,11 @@ def step_05(ref_seq, output_folder, file_name):
     command = f"echo {ref_name}\\\t{length} > {output_folder}{file_name}.genome"
     subprocess.check_call(command, shell=True)
     subprocess.check_call(f"bedtools bamtobed -i {output_folder}{file_name}_sorted.bam > {output_folder}{file_name}_reads.bed", shell=True)
-    subprocess.check_call(f"bedtools genomecov -bga -i {output_folder}{file_name}_reads.bed -g {output_folder}{file_name}.genome | awk '$4 < 1' > {output_folder}{file_name}_zero.bed", shell=True)
+    subprocess.check_call(f"bedtools genomecov -bga -i {output_folder}{file_name}_reads.bed -g {output_folder}{file_name}.genome | awk '$4 < 3' > {output_folder}{file_name}_zero.bed", shell=True)
+    print(f"bedtools genomecov -bga -i {output_folder}{file_name}_reads.bed -g {output_folder}{file_name}.genome | awk '$4 < 3' > {output_folder}{file_name}_zero.bed")
     subprocess.check_call(f"maskFastaFromBed -fi {ref_seq} -bed {output_folder}{file_name}_zero.bed -fo {output_folder}{file_name}_masked.fasta", shell=True)
     subprocess.check_call(f"bcftools mpileup -Ou -f {output_folder}{file_name}_masked.fasta --min-MQ 30 {output_folder}{file_name}_sorted.bam | bcftools call --ploidy 1 -mv -Oz -o {output_folder}{file_name}_test.vcf.gz", shell=True)
+    print(f"bcftools mpileup -Ou -f {output_folder}{file_name}_masked.fasta --min-MQ 30 {output_folder}{file_name}_sorted.bam | bcftools call --ploidy 1 -mv -Oz -o {output_folder}{file_name}_test.vcf.gz")
     subprocess.check_call(f"bcftools index {output_folder}{file_name}_test.vcf.gz", shell=True)
     subprocess.check_call(f"cat {output_folder}{file_name}_masked.fasta | bcftools consensus {output_folder}{file_name}_test.vcf.gz > {output_folder}{file_name}_new_consensus.fasta", shell=True)
     subprocess.check_call(f"echo {ref_name} > {output_folder}{file_name}_draft.fasta", shell=True)

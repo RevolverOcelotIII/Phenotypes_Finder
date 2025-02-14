@@ -2,7 +2,6 @@ import sys
 sys.path.append('/home/domdeny/src/bioinfo/genome-api/pipeline/Phenotypes_Finder/implementation')
 import os
 import subprocess
-import Gene
 
 # Alinhar os consensos com a sequência de referência
 
