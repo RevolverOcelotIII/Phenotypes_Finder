@@ -30,6 +30,7 @@ sudo apt update && sudo apt install -y git python3 python3-pip nodejs npm defaul
 ```bash
 git clone https://github.com/RevolverOcelotIII/GenomeInterface.git
 cd GenomeInterface
+git checkout master
 ```
 
 ### 2.2. Criar arquivo `.env`
