@@ -102,21 +102,17 @@ A API ficará disponível em `http://localhost:5000/`.
 sudo systemctl start mysql
 ```
 
-### 4.2. Acessar o MySQL como root
+### 4.2. Acessar o MySQL como root e alterar a senha do usuário (opcional)
 ```bash
-mysql -u root -p
+sudo mysql -u root
 ```
 
-### 4.3. Criar o banco de dados e configurar usuário
-```sql
-CREATE DATABASE snpfinder;
-CREATE USER 'root'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON snpfinder.* TO 'root'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
+```bash
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 ```
+Lembre-se de mudar a senha `'password'` para outra correspondente.
 
-### 4.4. Importar estrutura do banco de dados
+### 4.3. Importar estrutura do banco de dados
 ```bash
 mysql -u root -p snpfinder < Genome-API/arquivo.sql
 ```
